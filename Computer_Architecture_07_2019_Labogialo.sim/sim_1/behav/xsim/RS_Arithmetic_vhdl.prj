@@ -1,0 +1,9 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../../Desktop/test1_1/RS_part.vhd" \
+"../../../../../../Desktop/test1_1/Reg_32bit.vhd" \
+"../../../../../../Desktop/test1_1/Reg_5bit.vhd" \
+"../../../../../../Desktop/test1_1/RS_Arithmetic.vhd" \
+
+# Do not sort compile order
+nosort
