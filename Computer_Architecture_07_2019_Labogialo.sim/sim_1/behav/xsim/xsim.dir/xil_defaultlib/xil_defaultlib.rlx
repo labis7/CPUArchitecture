@@ -1,0 +1,26 @@
+0.6
+2018.2
+Jun 14 2018
+20:41:02
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sim_1/new/CDB_Bench.vhd,1540831468,vhdl,,,,cfg_tb_cdb;tb_cdb,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sim_1/new/Issue_Unit_Bench.vhd,1540750855,vhdl,,,,cfg_tb_issue;tb_issue,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sim_1/new/RF_Bench.vhd,1540749793,vhdl,,,,cfg_tb_rf;tb_rf,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sim_1/new/Tomatulo_part1_TestBench.vhd,1542485447,vhdl,,,,cfg_tb_tomatulo;tb_tomatulo,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sim_1/new/bench_tesst.vhd,1541184345,vhdl,,,,bench_tesst,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sim_1/new/tb_MC_RS_FU_A.vhd,1540749274,vhdl,,,,cfg_tb_mc_rs_fu_a;tb_mc_rs_fu_a,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/imports/test1_1/RS_Arithmetic.vhd,1533116638,vhdl,,,,rs_arithmetic,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/imports/test1_1/RS_Logical.vhd,1541323820,vhdl,,,,rs_logical,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/imports/test1_1/RS_part.vhd,1541323538,vhdl,,,,rs_part,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/imports/test1_1/Reg_32bit.vhd,1531310476,vhdl,,,,reg_32bit,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/imports/test1_1/Reg_5bit.vhd,1531473160,vhdl,,,,reg_5bit,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/CDB.vhd,1540828330,vhdl,,,,cdb,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/FU_Arithmetic.vhd,1541793713,vhdl,,,,fu_arithmetic,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/FU_Logical.vhd,1541868023,vhdl,,,,fu_logical,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/Issue.vhd,1542479385,vhdl,,,,issue,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/MC.vhd,1542478598,vhdl,,,,mc,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/MC_RS_FU_A.vhd,1541856892,vhdl,,,,mc_rs_fu_a,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/MC_RS_FU_L.vhd,1541873042,vhdl,,,,mc_rs_fu_l,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/RF.vhd,1541613143,vhdl,,,,rf,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/RF_part.vhd,1533800987,vhdl,,,,rf_part,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/Tomatulo.vhd,1542478810,vhdl,,,,tomatulo,,,,,,,,
+L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/test_over_ghhhh.vhd,1541186753,vhdl,,,,cfg_tb_test_over_ghhhh;tb_test_over_ghhhh,,,,,,,,
