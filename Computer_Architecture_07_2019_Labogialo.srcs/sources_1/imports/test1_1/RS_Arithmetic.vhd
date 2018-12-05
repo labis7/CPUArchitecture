@@ -51,7 +51,7 @@ entity RS_Arithmetic is
 		   Vj_RS1_IN : in  STD_LOGIC_VECTOR (31 downto 0);
            Vj_RS2_IN : in  STD_LOGIC_VECTOR (31 downto 0);
            Vj_RS3_IN : in  STD_LOGIC_VECTOR (31 downto 0);
-			  
+			ID_ROB_RS: in  STD_LOGIC_VECTOR (4 downto 0);  
 			  
 			  
 		   Rb :   out  STD_LOGIC_VECTOR (2 downto 0);
@@ -84,12 +84,13 @@ architecture Behavioral of RS_Arithmetic is
 
 signal Qk_RS1_tmp,Qk_RS2_tmp,Qk_RS3_tmp, Qj_RS1_tmp,Qj_RS2_tmp,Qj_RS3_tmp :STD_LOGIC_VECTOR(4 downto 0);
 signal free_out_tmp  :STD_LOGIC_VECTOR(2 downto 0);
-signal opcode_rs1_out_tmp,opcode_rs2_out_tmp,opcode_rs3_out_tmp :STD_LOGIC_VECTOR(4 downto 0);
+signal opcode_rs1_out_tmp,opcode_rs2_out_tmp,opcode_rs3_out_tmp,ID_ROB_RS_TMP :STD_LOGIC_VECTOR(4 downto 0);
 
 COMPONENT RS_part
     Port ( CLK			: IN    STD_LOGIC;
 		   EN			: IN    STD_LOGIC_VECTOR(2 downto 0);
-			 
+			
+		    
  		   OpCode_in    : in  STD_LOGIC_VECTOR (4 downto 0);
 		   Vk_in 		: in  STD_LOGIC_VECTOR (31 downto 0);
            Vj_in 		: in  STD_LOGIC_VECTOR (31 downto 0);
@@ -115,13 +116,14 @@ Port Map(CLK			=>CLK			,
          Vj_in 		    =>Vj_RS1_IN 	,
          Qk_in 		    =>Qk_RS1_IN	    ,
          Qj_in 		    =>Qj_RS1_IN	 	,
+    
 							
         
          Vk_out 		=>Vk_RS1_OUT 	 , 
          Vj_out 		=>Vj_RS1_OUT 	 ,
 		 Qk_out 		=>Qk_RS1_tmp 	 ,
          Qj_out 		=>Qj_RS1_tmp 	 ,
-         ID_in  		=>"01001"    	 ,													
+         ID_in  		=>ID_ROB_RS  ,													
          ID_out  		=> ID_RS1_OUT	 ,
          OpCode_out  => OpCode_RS1_OUT_tmp);
         -- OpCode_out(3 downto 2)  => trash_RS1,      --oti thelw egw malaka mou
@@ -144,7 +146,7 @@ Port Map(CLK			=>CLK		   ,
          Vj_out 		=>Vj_RS2_OUT 	,
 		 Qk_out 		=>Qk_RS2_tmp 	,
          Qj_out 		=>Qj_RS2_tmp 	,
-         ID_in  		=>"01010"    	,
+         ID_in  		=>ID_ROB_RS	,
          ID_out  		=> ID_RS2_OUT	,
          OpCode_out => OpCode_RS2_OUT_tmp);
         -- OpCode_out(3 downto 2)  => trash_RS2,
@@ -166,7 +168,7 @@ Port Map(CLK			=>CLK			,
          Vj_out 		=>Vj_RS3_OUT 	 ,
 		 Qk_out 		=>Qk_RS3_tmp 	 ,
          Qj_out 		=>Qj_RS3_tmp 	 ,
-         ID_in  		=>"01011"    	 ,
+         ID_in  		=> ID_ROB_RS ,
          ID_out  		=> ID_RS3_OUT	 ,
          OpCode_out     => OpCode_RS3_OUT_tmp);
         -- OpCode_out(3 downto 2)  => trash_RS3,

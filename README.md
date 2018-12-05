@@ -1,2 +1,0 @@
-# CPUArchitecture
-Tomasulo

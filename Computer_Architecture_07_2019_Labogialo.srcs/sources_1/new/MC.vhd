@@ -71,6 +71,7 @@ Port (     clk       : in STD_LOGIC;
            CDB_Q     : in STD_LOGIC_VECTOR (4 downto 0);
            OpCode    : in STD_LOGIC_VECTOR (4 downto 0); --apo issue, me 5o bit nanai panta '0' (busy)
            Stop          : in STD_LOGIC;
+           ID_ROB_RS: in  STD_LOGIC_VECTOR (4 downto 0);
             
            Poke_out_A: out STD_LOGIC;
            Res_A     : out STD_LOGIC_VECTOR (31 downto 0);
@@ -111,6 +112,7 @@ Port Map(clk       =>clk,
          CDB_Q     =>CDB_Q_IN,
          OpCode    =>Opcode_A_tmp,
          stop      =>stop_a_tmp,   
+         ID_ROB_RS =>ID_ROB_RS_TMP,
                    
          Poke_out_A=>Poke_out_A,
          Res_A     =>result_a_tmp,
@@ -180,31 +182,61 @@ if((free_l_tmp='1')and((Opcode(3 downto 2)="00")or(fu_type="00"))) Then
     free_l_out <= '1';
 end if;
 
-------------------------------------------------------
+---epishs mia logikh pou tha apofasizei ti value tha dwsei sthn RF, tou ROB h tou cdb(ROB OTAN rob1 einai ready opote mallon o cdb exei value gia kapio allo rob#, h cdb_v otan rob1 not ready kai cdb_q = rob_r_dest )
+--rob_dest,rob_value pernoun apodw
+if((rob_dest = cdb_q)) then  -- perpitwsh pou rob1_dest = cdb_q (dil. rob1 not ready alla molis exei bgei to apotelesma ston cdb)
+    rob_dest_out <= rob_dest; --(h cdb_q, einai to idio)
+    rf_val_out   <= cdb_v;
+elsif(rob_status = '1') then --ready to rob1, ara bazoume to value tou sthn rf gia egraffh
+    rob_dest_out <= rob_dest;
+    rf_val_out   <= rob_value;
+elsif(rob_status = '0') then 
+    tob_dest_out<= "00000";
+else null;
+end if;
+    
+
+
+
 if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou arithmetic
-    ID_out<=ID_a_OUT_TMP;
+   -- ID_out<=ID_a_OUT_TMP;
     if(free_A_tmp='1') Then        --des an einai diathesimh h Arithmetic Unit
     
     
     ------------------------------------- TIS PARAKATW TIMES THA TIS PAREI EITE APO ROB EITE APO RF(SHMEIWSH MANOU)
-    
-    ---------------------------------epishs mia logika pou tha apofasizei ti value tha dwsei sthn RF, tou ROB h tou cdb(ROB OTAN rob1 einai ready opote mallon o cdb exei value gia kapio allo rob#, h cdb_v otan rob1 not ready kai cdb_q = rob_r_dest )
+    if(rob_qk ="11111") then 
         Vk_tmp <= Vk;
-        Vj_tmp <= Vj;
-        Qk_tmp <= Qk;
-        Qj_tmp <= Qj;
+        Qk_tmp <= "11111";
+     else
+        Qk_tmp <= rob_qk;
+     end if;
+ 
+     if(rob_qj ="11111") then 
+         Vj_tmp <= Vj;
+         Qj_tmp <= "11111";
+      else
+         Qj_tmp <= rob_qj;
+      end if;    
+     
+     
+    ---------------------------------
+        --Vk_tmp <= Vk;
+        --Vj_tmp <= Vj;
+      --  Qk_tmp <= Qk;
+      --  Qj_tmp <= Qj;
         opcode_A_tmp <= opcode;
         
         free_a_out <= '1';
        ------------ENABLE TOU ROB KAI NEO RS_ID(TOP_ROB_ID APO ROB)
-       
+        ID_ROB_rs_TMP<=ROB_ID;--touto, pagainei sto shmeio pou energopoiheitai to prwto diathesimo slot tou RS gia na bgei sthn e3odo tou(RS#_ID)
+        en_rob<='1';
        ----------------
         stop_l_tmp<='1';   -- wste na stamathsei na roufaei pragmata pou blepei sthn eisodo tou
         stop_a_tmp<='0';
        
     else
         ------------DISABLE TOU ROB 
-           
+        en_rob<='0';  
         ----------------
         free_a_out <= '0';
     end if; 

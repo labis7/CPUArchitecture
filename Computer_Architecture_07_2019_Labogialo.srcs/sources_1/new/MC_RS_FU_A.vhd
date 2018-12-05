@@ -42,6 +42,7 @@ entity MC_RS_FU_A is
            CDB_Q     : in STD_LOGIC_VECTOR (4 downto 0);
            OpCode    : in STD_LOGIC_VECTOR (4 downto 0); --apo issue, me 5o bit nanai panta '0' (busy)
            Stop          : in STD_LOGIC;
+           ID_ROB_RS: in  STD_LOGIC_VECTOR (4 downto 0);
           
            Poke_out_A: out STD_LOGIC;
            Res_A     : out STD_LOGIC_VECTOR (31 downto 0);
@@ -77,7 +78,7 @@ COMPONENT  RS_Arithmetic
 		   Vj_RS1_IN       : in  STD_LOGIC_VECTOR (31 downto 0);
            Vj_RS2_IN       : in  STD_LOGIC_VECTOR (31 downto 0);
            Vj_RS3_IN       : in  STD_LOGIC_VECTOR (31 downto 0);
-			  
+			 ID_ROB_RS : in  STD_LOGIC_VECTOR (4 downto 0);
 			  
 			  
 		   Rb :   out  STD_LOGIC_VECTOR (2 downto 0);
@@ -178,7 +179,7 @@ Port Map(  CLK       => CLK ,
 		   Vj_RS1_IN   =>  Vj_RS1_IN_TMP ,  
            Vj_RS2_IN   => Vj_RS2_IN_TMP  ,  
            Vj_RS3_IN   => Vj_RS3_IN_TMP  ,  
-			 
+			ID_ROB_RS  =>ID_ROB_RS, 
 			 
 			 
 		   Rb         => RB_TMP , 
@@ -375,6 +376,7 @@ elsif (((free_out_tmp(2)/='0') or (opcode_rs1_out_tmp(4)/='0')) and (Qk_tmp="001
     qj_rs1_in_tmp <= qj_tmp;
     OPCODE_RS1_IN_TMP<=opcode_tmp;
     ID_A_OUT <= id_rs1_out_tmp;
+    --ID_ROB_RS
     en_rs1_tmp<="111";
     en_rs2_tmp<="000";
     en_rs3_tmp<="000";
