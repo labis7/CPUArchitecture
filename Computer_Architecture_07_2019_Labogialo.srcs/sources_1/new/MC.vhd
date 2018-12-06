@@ -44,7 +44,21 @@ entity MC is
            Grand_in_L :in STD_LOGIC;
            Fu_type   : in STD_LOGIC_VECTOR (1 downto 0);
            Stop_In          : in STD_LOGIC;
+           rob_vk :in STD_LOGIC_VECTOR (31 downto 0);
+           rob_vj : in STD_LOGIC_VECTOR (31 downto 0);
+           rob_qk : in STD_LOGIC_VECTOR (4 downto 0);
+           rob_qj : in STD_LOGIC_VECTOR (4 downto 0);
+           rob_id  : in STD_LOGIC_VECTOR (4 downto 0);
+           rob_dest: in STD_LOGIC_VECTOR (4 downto 0);
+           rob_status: in STD_LOGIC;
+           cdb_v: in STD_LOGIC_VECTOR (31 downto 0);
+           cdb_q : in STD_LOGIC_VECTOR (4 downto 0);
+           rob_value: in STD_LOGIC_VECTOR (31 downto 0);
            
+           
+           rob_en :out STD_LOGIC;
+           rf_dest_out: out std_logic_vector(4 downto 0); --pros rf
+           rf_val_out : out STD_LOGIC_VECTOR (31 downto 0);  --pros rf         
            ID_out : out std_logic_vector(4 downto 0);
            Poke_out_A :out STD_LOGIC;
            Poke_out_L :out STD_LOGIC;           
@@ -56,7 +70,7 @@ end MC;
 
 architecture Behavioral of MC is
 SIGNAL Vk_tmp, Vj_tmp,CDB_V_tmp,result_a_tmp,result_L_tmp : STD_LOGIC_vector(31 downto 0);  
-SIGNAL Qk_tmp,Qj_tmp,CDB_Q_TMP,Opcode_A_tmp,id_a_out_tmp,Tag_A_tmp,Opcode_L_tmp,id_L_out_tmp,Tag_L_tmp : STD_LOGIC_vector(4 downto 0);       
+SIGNAL Qk_tmp,Qj_tmp,CDB_Q_TMP,Opcode_A_tmp,id_a_out_tmp,Tag_A_tmp,Opcode_L_tmp,id_L_out_tmp,Tag_L_tmp,ID_ROB_RS_TMP : STD_LOGIC_vector(4 downto 0);       
 SIGNAL Poke_out_A_tmp,grand_in_A_tmp,Poke_out_L_tmp,grand_in_L_TMP,free_A_tmp,free_L_tmp,stop_l_tmp,stop_a_tmp : STD_LOGIC; 
         
 
@@ -185,13 +199,13 @@ end if;
 ---epishs mia logikh pou tha apofasizei ti value tha dwsei sthn RF, tou ROB h tou cdb(ROB OTAN rob1 einai ready opote mallon o cdb exei value gia kapio allo rob#, h cdb_v otan rob1 not ready kai cdb_q = rob_r_dest )
 --rob_dest,rob_value pernoun apodw
 if((rob_dest = cdb_q)) then  -- perpitwsh pou rob1_dest = cdb_q (dil. rob1 not ready alla molis exei bgei to apotelesma ston cdb)
-    rob_dest_out <= rob_dest; --(h cdb_q, einai to idio)
+    rf_dest_out <= rob_dest; --(h cdb_q, einai to idio)
     rf_val_out   <= cdb_v;
 elsif(rob_status = '1') then --ready to rob1, ara bazoume to value tou sthn rf gia egraffh
-    rob_dest_out <= rob_dest;
+    rf_dest_out <= rob_dest;
     rf_val_out   <= rob_value;
 elsif(rob_status = '0') then 
-    tob_dest_out<= "00000";
+    rf_dest_out<= "00000";    --gia na mhn grapsei tpt, perimenoume
 else null;
 end if;
     
@@ -204,19 +218,25 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
     
     
     ------------------------------------- TIS PARAKATW TIMES THA TIS PAREI EITE APO ROB EITE APO RF(SHMEIWSH MANOU)
-    if(rob_qk ="11111") then 
-        Vk_tmp <= Vk;
-        Qk_tmp <= "11111";
-     else
+    if(rob_qk ="00000") then --EKMETALEUOMASTE THN DESMEUMENH TIMH GIA NA DEI3OUME OTI TO STOIXEIO DEN UPARXEI MESA STON ROB(epilegoume), to 11111 deixnei oti uparxei ston ROB kai oriste h timh tou(den epilegoume rf)
+        Vk_tmp <= Vk; --pare thn timh apo rf
+        Qk_tmp <= "11111"; -- olo asous mesa sto rs. gt thn exoume thn timh
+     elsif(rob_qk ="11111") then -- auto shmainei pws uparxei h timh sto ROB kai einai etoimh, DEN epilgeoume rf
+        Vk_tmp<=rob_vk;
+        Qk_tmp <= rob_qk; --11111
+     else                   ---periptwsh pou uparxei ston ROB alla den einai diathesimh h timh  (Qk=rob# apopou perimenoume)
         Qk_tmp <= rob_qk;
      end if;
  
-     if(rob_qj ="11111") then 
-         Vj_tmp <= Vj;
-         Qj_tmp <= "11111";
-      else
-         Qj_tmp <= rob_qj;
-      end if;    
+     if(rob_qj ="00000") then --EKMETALEUOMASTE THN DESMEUMENH TIMH GIA NA DEI3OUME OTI TO STOIXEIO DEN UPARXEI MESA STON ROB(epilegoume), to 11111 deixnei oti uparxei ston ROB kai oriste h timh tou(den epilegoume rf)
+        Vj_tmp <= Vj; --pare thn timh apo rf
+        Qj_tmp <= "11111"; -- olo asous mesa sto rs. gt thn exoume thn timh
+     elsif(rob_qk ="11111") then -- auto shmainei pws uparxei h timh sto ROB kai einai etoimh, DEN epilgeoume rf
+        Vj_tmp<=rob_vj;
+        Qj_tmp <= rob_qj; --11111
+     else                   ---periptwsh pou uparxei ston ROB alla den einai diathesimh h timh  (Qj=rob# apopou perimenoume)
+        Qj_tmp <= rob_qj;
+     end if;
      
      
     ---------------------------------
@@ -229,14 +249,14 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
         free_a_out <= '1';
        ------------ENABLE TOU ROB KAI NEO RS_ID(TOP_ROB_ID APO ROB)
         ID_ROB_rs_TMP<=ROB_ID;--touto, pagainei sto shmeio pou energopoiheitai to prwto diathesimo slot tou RS gia na bgei sthn e3odo tou(RS#_ID)
-        en_rob<='1';
+        rob_en<='1';
        ----------------
         stop_l_tmp<='1';   -- wste na stamathsei na roufaei pragmata pou blepei sthn eisodo tou
         stop_a_tmp<='0';
        
     else
         ------------DISABLE TOU ROB 
-        en_rob<='0';  
+        rob_en<='0';  
         ----------------
         free_a_out <= '0';
     end if; 

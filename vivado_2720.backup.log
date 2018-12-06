@@ -2,16 +2,19 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Wed Oct 17 20:06:48 2018
-# Process ID: 3984
+# Start of session at: Fri Nov  9 22:18:35 2018
+# Process ID: 2720
 # Current directory: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16164 L:\VidadoLabs\Computer_Architecture_07_2019_Labogialo\Computer_Architecture_07_2019_Labogialo.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13548 L:\VidadoLabs\Computer_Architecture_07_2019_Labogialo\Computer_Architecture_07_2019_Labogialo.xpr
 # Log file: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/vivado.log
 # Journal file: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.xpr
-update_compile_order -fileset sources_1
-close [ open L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/Tomatulo.vhd w ]
-add_files L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/Tomatulo.vhd
-update_compile_order -fileset sources_1
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'L:/Xilinx/Vivado/2018.2/data/ip'.
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Nov  9 22:19:48 2018...
