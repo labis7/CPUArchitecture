@@ -35,13 +35,13 @@ entity Tomatulo is
     Port ( CLK : in STD_LOGIC;
            Accepted:  out STD_LOGIC; 
             
-           reset : in STD_LOGIC;    
+           reset     : in STD_LOGIC;    
            Fu_type   : in STD_LOGIC_VECTOR (1 downto 0);
            FOp       : in STD_LOGIC_VECTOR (1 downto 0);
            R_dest    : in STD_LOGIC_VECTOR (4 downto 0);
            Rk_addr   : in STD_LOGIC_VECTOR (4 downto 0);
            Rj_addr   : in STD_LOGIC_VECTOR (4 downto 0); 
-           Issue_in     : in STD_LOGIC);
+           Issue_in  : in STD_LOGIC);
            
            
 end Tomatulo;
