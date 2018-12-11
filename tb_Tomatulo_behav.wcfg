@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_Tomatulo_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_Tomatulo" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1000000001fs"></ZoomEndTime>
+      <Cursor1Time time="182172000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="203"></NameColumnWidth>
+      <ValueColumnWidth column_width="78"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="38" />
+   <wvobject fp_name="/tb_Tomatulo/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/R_dest" type="array">
+      <obj_property name="ElementShortName">R_dest[4:0]</obj_property>
+      <obj_property name="ObjectShortName">R_dest[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/Rk_addr" type="array">
+      <obj_property name="ElementShortName">Rk_addr[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Rk_addr[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/Rj_addr" type="array">
+      <obj_property name="ElementShortName">Rj_addr[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Rj_addr[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/OpCode" type="array">
+      <obj_property name="ElementShortName">OpCode[4:0]</obj_property>
+      <obj_property name="ObjectShortName">OpCode[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/Issue_in" type="logic">
+      <obj_property name="ElementShortName">Issue_in</obj_property>
+      <obj_property name="ObjectShortName">Issue_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/Accepted" type="logic">
+      <obj_property name="ElementShortName">Accepted</obj_property>
+      <obj_property name="ObjectShortName">Accepted</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider78">
+      <obj_property name="label">RS_A</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/RS_A/OpCode_RS1_OUT" type="array">
+      <obj_property name="ElementShortName">OpCode_RS1_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">OpCode_RS1_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/RS_A/OpCode_RS2_OUT" type="array">
+      <obj_property name="ElementShortName">OpCode_RS2_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">OpCode_RS2_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/RS_A/OpCode_RS3_OUT" type="array">
+      <obj_property name="ElementShortName">OpCode_RS3_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">OpCode_RS3_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider101">
+      <obj_property name="label">RS_L</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_L_Unit/RS_L/OpCode_RS1_OUT" type="array">
+      <obj_property name="ElementShortName">OpCode_RS1_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">OpCode_RS1_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_L_Unit/RS_L/OpCode_RS2_OUT" type="array">
+      <obj_property name="ElementShortName">OpCode_RS2_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">OpCode_RS2_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider77">
+      <obj_property name="label">FU_A</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/FU_A/Tag_1" type="array">
+      <obj_property name="ElementShortName">Tag_1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Tag_1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/FU_A/Tag_2" type="array">
+      <obj_property name="ElementShortName">Tag_2[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Tag_2[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/FU_A/Tag_OUT" type="array">
+      <obj_property name="ElementShortName">Tag_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Tag_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/FU_A/Result_A" type="array">
+      <obj_property name="ElementShortName">Result_A[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Result_A[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider77">
+      <obj_property name="label">FU_L</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_L_Unit/FU_L/Tag_1" type="array">
+      <obj_property name="ElementShortName">Tag_1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Tag_1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_L_Unit/FU_L/Tag_OUT" type="array">
+      <obj_property name="ElementShortName">Tag_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Tag_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_L_Unit/FU_L/Result_L" type="array">
+      <obj_property name="ElementShortName">Result_L[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Result_L[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider76">
+      <obj_property name="label"> CDB &amp; RF</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/Poke_out_A" type="logic">
+      <obj_property name="ElementShortName">Poke_out_A</obj_property>
+      <obj_property name="ObjectShortName">Poke_out_A</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/Grand_in_A" type="logic">
+      <obj_property name="ElementShortName">Grand_in_A</obj_property>
+      <obj_property name="ObjectShortName">Grand_in_A</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/Poke_out_L" type="logic">
+      <obj_property name="ElementShortName">Poke_out_L</obj_property>
+      <obj_property name="ObjectShortName">Poke_out_L</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/Grand_in_L" type="logic">
+      <obj_property name="ElementShortName">Grand_in_L</obj_property>
+      <obj_property name="ObjectShortName">Grand_in_L</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/CDB_Unit/CDB_V_OUT" type="array">
+      <obj_property name="ElementShortName">CDB_V_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CDB_V_OUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/CDB_Unit/CDB_Q_OUT" type="array">
+      <obj_property name="ElementShortName">CDB_Q_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">CDB_Q_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/RF_Unit/R1/R_OUT" type="array">
+      <obj_property name="ElementShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/RF_Unit/R2/R_OUT" type="array">
+      <obj_property name="ElementShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/RF_Unit/R3/R_OUT" type="array">
+      <obj_property name="ElementShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/RF_Unit/R4/R_OUT" type="array">
+      <obj_property name="ElementShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/RF_Unit/R5/R_OUT" type="array">
+      <obj_property name="ElementShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/RF_Unit/R6/R_OUT" type="array">
+      <obj_property name="ElementShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/RF_Unit/R7/R_OUT" type="array">
+      <obj_property name="ElementShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/RF_Unit/R8/R_OUT" type="array">
+      <obj_property name="ElementShortName">R_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT[31:0]</obj_property>
+   </wvobject>
+</wave_config>
