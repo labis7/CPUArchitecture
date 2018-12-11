@@ -74,15 +74,22 @@ signal Value,pc       : bit_32;
 signal Dest           : bit_5;
 signal opcode         : bit_4; 
 signal ready,ex_stat  : bit_1;
-signal top_s          : std_logic_vector (4 downto 0);
+signal top_s,bot_s  : std_logic_vector (4 downto 0);
 
 begin
 process (clk)
-variable top : std_logic_vector (4 downto 0);             -- tha arxikopoihsoyme sto ROB1 (00000)       
+variable top : std_logic_vector (4 downto 0);             -- tha arxikopoihsoyme sto ROB1 (00000)   = bot
+variable bot : std_logic_vector (4 downto 0);           -- tha arxikopoihsoyme sto ROB1 (00000)   = top
                                                           -- einai o deiktis poy mas deixnei se poio stoixeio ths fifo tha grapsoume   
 begin
 
-top := top_s;
+--RESET
+--bot_S<="00000";
+--TOP_S<="00000";
+
+
+top  := top_s;
+bot:= bot_s;  --(start)
 
 if clk'event and clk = '1' then
 -----------------------------------------------------------------------------------------------------     
@@ -93,7 +100,7 @@ if clk'event and clk = '1' then
             if (Dest(i) = Rk) then          
                 if (ready(i) = '1') then
                     Vk <= Value(i);
-                    Qk <= "11111";               --kwdikos oti uparxei ston ROB, kai exoun kai thn timh
+                    Qk <= "11111";               --DESMEUMENOS kwdikos oti uparxei ston ROB, kai exoun kai thn timh
                 elsif (ready(i)='0')and (CDB_Q = Dest(i)) then
                     Vk <= CDB_V;
                     Qk <= "11111";                 --corner case, molis irthe apo cdb
@@ -101,8 +108,8 @@ if clk'event and clk = '1' then
                     Qk <= std_logic_vector(to_unsigned(i,5));
                 end if;
                 exit;
-            elsif ( i = 1 ) then   --ftasame sto ROB1 stoixeio
-                Qk <= "00000";      -- kwdikos pou deixnei oti den brikame to stoixeio pou psaxname,opote tha to epile3oume apo thn RF(douleia tou MC)
+            elsif ( i = bot ) then   --ftasame sto ROB(bot-start) stoixeio
+                Qk <= "11110";      -- DESMEUMENOS kwdikos pou deixnei oti den brikame to stoixeio pou psaxname,opote tha to epile3oume apo thn RF(douleia tou MC)
             else 
                 null;
             end if;
@@ -112,7 +119,7 @@ if clk'event and clk = '1' then
             if (Dest(i) = Rj) then
                 if (ready(i) = '1') then
                     Vj <= Value(i);
-                    Qj <= "11111";              --kwdikos oti uparxei ston ROB, kai exoun kai thn timh
+                    Qj <= "11111";              --DESMEUMENOS kwdikos oti uparxei ston ROB, kai exoun kai thn timh
                 elsif (ready(i)='0')and (CDB_Q = Dest(i)) then
                     Vk <= CDB_V;
                     Qk <= "11111";              --corner case, molis irthe apo cdb
@@ -120,8 +127,8 @@ if clk'event and clk = '1' then
                     Qj <= std_logic_vector(to_unsigned(i,5));
                 end if;
                 exit;
-            elsif ( i = 1 ) then
-                Qj <= "00000"; 
+            elsif ( i = bot ) then
+                Qj <= "11110";      -- DESMEUMENOS wdikos pou deixnei oti den brikame to stoixeio pou psaxname,opote tha to epile3oume apo thn RF(douleia tou MC)
             else 
                 null;
             end if;
@@ -129,8 +136,10 @@ if clk'event and clk = '1' then
         
         
         
-     --apothikeush timhs       
-        top := top_s+"00001";
+     --apothikeush timhs  
+        top := top_s + "00001";
+        top := std_logic_vector(to_unsigned( ((to_integer(unsigned(top_s))) mod 30) , 5 ))+ "00001";
+
         Rob_ID <= top_s+"00001";   --- e3odos tou ROB, gia na to parei 
         Dest(to_integer(unsigned(top))) <= R_dest;
         ready(to_integer(unsigned(top))) <= '0';            -- ready = done , den uparxei periptwsi moliw mpei mia entoli apo issue na exoume apotelesmata sto value
@@ -157,21 +166,23 @@ end if;         --(END_IF TOU CLOCK)
 
 for i in to_integer(unsigned(top_s)) to 1 loop   -- apo to palio top 3ekiname, thewrwntas pws ta apo panw exoun kanei swsta to forward pou pithanon na dhmiourgouse thema
     ---den tha elegxoume gia to i==0 to corner case,pou o cdb efere twra thn timh, gt den mas noiazei na thn apothikeusoume kai na xasoume kuklo, h parapanw diadikasia to kalupse    
-    if(to_integer(unsigned(CDB_Q) = i) THEN  -- brikame to ROB# pou xreiazetai to  value tou (apo ton cdb)
-        
-     
+    if(to_integer(unsigned(CDB_Q)) = i)  THEN  -- brikame to ROB# pou xreiazetai to  value tou (apo ton cdb)
+       Value(i) <=  CDB_V;                     --mporei na to xreiastoun perissotera apo 1 ,opote den kanoume kanena exit apo to loop
+       Ready(i) <= '1';                        -- h katastash ginetai pleon ready
     end if;
-
 end loop;
-
-
 
 ---------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------delete ROB1 (commited)  and shift everything else-----------------------------------
 --------------------------------------------------------------------------------------------------------------- 
 
---elegxos gia to corner case tou i==1 kai tou cdb na exei ferei twra thn timh tou
+if((Ready(1)='1')or(CDB_Q = "00001")) then          --elegxos gia to corner case tou i==1 kai tou cdb na exei ferei twra thn timh tou
 
+end if;
+
+-------------------------------
+--telikh enhmerwsh tou neou top
+-------------------------------
 
 
 
