@@ -178,12 +178,19 @@ else
     null;  
 end if;
 
---enhmerwsh twn out timws tou bot opws dest,ready_status
+--enhmerwsh twn out timws tou bot opws dest,ready_status k.a.
+if clk'event and clk = '1' then
+    ROB1_RES  <= Value(to_integer(unsigned(bot)));
+    ROB1_DEST <= Dest(to_integer(unsigned(bot)));
+    ready_out      <= ready(to_integer(unsigned(bot)));
+    exception_code <= ex_stat(to_integer(unsigned(bot)));
+end if;
 
 -------------------------------
 --telikh enhmerwsh tou neou top/start
 -------------------------------
-
+bot_s<=bot;
+top_s<=top;
 
 
 end process;

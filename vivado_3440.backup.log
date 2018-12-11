@@ -2,10 +2,10 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Tue Dec 11 19:44:22 2018
-# Process ID: 5584
+# Start of session at: Tue Dec 11 14:56:51 2018
+# Process ID: 3440
 # Current directory: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11020 L:\VidadoLabs\Computer_Architecture_07_2019_Labogialo\Computer_Architecture_07_2019_Labogialo.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4432 L:\VidadoLabs\Computer_Architecture_07_2019_Labogialo\Computer_Architecture_07_2019_Labogialo.xpr
 # Log file: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/vivado.log
 # Journal file: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo\vivado.jou
 #-----------------------------------------------------------
@@ -16,6 +16,6 @@ Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'L:/Xilinx/Vivado/2018.2/data/ip'.
-open_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 805.867 ; gain = 66.484
+open_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 804.766 ; gain = 72.941
 exit
-INFO: [Common 17-206] Exiting Vivado at Tue Dec 11 21:45:19 2018...
+INFO: [Common 17-206] Exiting Vivado at Tue Dec 11 15:50:12 2018...
