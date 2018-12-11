@@ -81,8 +81,15 @@ end component;
 
 begin
 
-ID_OUT<=ID_IN;
+--ID_OUT<=ID_IN;
 
+
+ROB_ID: Reg_5bit
+Port Map( CLK 			 =>CLK,
+          Input_5bit     =>ID_IN,
+          Reset 		 =>'0',
+          EN 			 =>EN(0),	--energopoieitai sto 0 diladh otan energoipoieitai to opcode(thn 2h fora pou tha ginei adeio den mas noiazei h timh pou tha parei to id logw tou enable)
+          Output_5bit    =>ID_out );
 
 OpCode_Reg :Reg_5bit
 Port Map( CLK 			 =>CLK,
