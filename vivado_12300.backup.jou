@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Sat Dec  8 21:50:40 2018
+# Process ID: 12300
+# Current directory: C:/Users/Manoz/Desktop/Computer_Architecture/Project/CPUArchitecture
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12332 C:\Users\Manoz\Desktop\Computer_Architecture\Project\CPUArchitecture\Computer_Architecture_07_2019_Labogialo.xpr
+# Log file: C:/Users/Manoz/Desktop/Computer_Architecture/Project/CPUArchitecture/vivado.log
+# Journal file: C:/Users/Manoz/Desktop/Computer_Architecture/Project/CPUArchitecture\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Manoz/Desktop/Computer_Architecture/Project/CPUArchitecture/Computer_Architecture_07_2019_Labogialo.xpr

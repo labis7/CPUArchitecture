@@ -231,7 +231,7 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
      if(rob_qj ="00000") then --EKMETALEUOMASTE THN DESMEUMENH TIMH GIA NA DEI3OUME OTI TO STOIXEIO DEN UPARXEI MESA STON ROB(epilegoume), to 11111 deixnei oti uparxei ston ROB kai oriste h timh tou(den epilegoume rf)
         Vj_tmp <= Vj; --pare thn timh apo rf
         Qj_tmp <= "11111"; -- olo asous mesa sto rs. gt thn exoume thn timh
-     elsif(rob_qk ="11111") then -- auto shmainei pws uparxei h timh sto ROB kai einai etoimh, DEN epilgeoume rf
+     elsif(rob_qj ="11111") then -- auto shmainei pws uparxei h timh sto ROB kai einai etoimh, DEN epilgeoume rf
         Vj_tmp<=rob_vj;
         Qj_tmp <= rob_qj; --11111
      else                   ---periptwsh pou uparxei ston ROB alla den einai diathesimh h timh  (Qj=rob# apopou perimenoume)
