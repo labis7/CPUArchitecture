@@ -176,7 +176,7 @@ end if;
 
 
 --------
---spasimo arxikh periptwshs
+--spasimo arxikh periptwshs(+exception)
 --------
 if((Opcode(3 downto 2) /= "01" )and (Opcode(3 downto 2) /= "00" )) then 
     free_a_out<='1';
@@ -239,19 +239,15 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
      end if;
      
      
-    ---------------------------------
-        --Vk_tmp <= Vk;
-        --Vj_tmp <= Vj;
-      --  Qk_tmp <= Qk;
-      --  Qj_tmp <= Qj;
+      -------------------------
         opcode_A_tmp <= opcode;
         
-        free_a_out <= '1';
+        free_a_out <= '1';      --gemisei me auto pou bazw twra, tha enhmerwthei auth h metablith asugxrona me to pou apanthsei (se ayton to kuklo to RS)
        ------------ENABLE TOU ROB KAI NEO RS_ID(TOP_ROB_ID APO ROB)
         ID_ROB_rs_TMP<=ROB_ID;--touto, pagainei sto shmeio pou energopoiheitai to prwto diathesimo slot tou RS gia na bgei sthn e3odo tou(RS#_ID)
         rob_en<='1';
        ----------------
-        stop_l_tmp<='1';   -- wste na stamathsei na roufaei pragmata pou blepei sthn eisodo tou
+        stop_l_tmp<='1';   -- wste na stamathsei na roufaei pragmata pou blepei sthn eisodo tou(logiko RS)
         stop_a_tmp<='0';
        
     else
@@ -261,26 +257,42 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
         free_a_out <= '0';
     end if; 
 elsif((Opcode(3 downto 2) = "00")AND(stop_in='0')) then --an h entolh einai tupou Logical
-    ID_out<=ID_L_OUT_TMP;
+   -- ID_out<=ID_L_OUT_TMP;
     if(free_L_tmp='1') Then        --des an einai diathesimh h Logical Unit
-        Vk_tmp <= Vk;
-        Vj_tmp <= Vj;
-        Qk_tmp <= Qk;
-        Qj_tmp <= Qj;
+        
+        
+        if(rob_qk ="11110") then 
+            Vk_tmp <= Vk; 
+            Qk_tmp <= "11111"; 
+         elsif(rob_qk ="11111") then
+            Vk_tmp<=rob_vk;         
+            Qk_tmp <= rob_qk; 
+         else                  
+            Qk_tmp <= rob_qk;       
+         end if;                    
+                                    
+         if(rob_qj ="11110") then 
+            Vj_tmp <= Vj; 
+            Qj_tmp <= "11111"; 
+         elsif(rob_qj ="11111") then
+            Vj_tmp<=rob_vj;         
+            Qj_tmp <= rob_qj; 
+         else                  
+            Qj_tmp <= rob_qj;       
+         end if;                    
+        
         opcode_L_tmp <= opcode;
-        
-        ------------DISABLE TOU ROB KAI NEO RS_ID(TOP_ROB_ID APO ROB)
-                   
-        ----------------
-        
         free_l_out <= '1';
         stop_a_tmp<='1';   -- wste na stamathsei na roufaei pragmata pou blepei sthn eisodo tou
         stop_l_tmp<='0';
+        --
+        ID_ROB_rs_TMP<=ROB_ID;--touto, pagainei sto shmeio pou energopoiheitai to prwto diathesimo slot tou RS gia na bgei sthn e3odo tou(RS#_ID)
+        rob_en<='1';
+        --
     else
         free_l_out <= '0';
-        ------------DISABLE TOU ROB
-                   
-        ----------------
+        
+        rob_en<='0'; ----------DISABLE TOU ROB   (prosoxh na dw ton sugxronismo!!!)   
     end if;
 else null;
 end if;
