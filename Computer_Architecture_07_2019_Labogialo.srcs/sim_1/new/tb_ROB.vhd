@@ -114,7 +114,7 @@ CLK_process :process
     stimuli : process
     begin      
        CDB_V   <="00000000000000000000000000000001"; 
-       CDB_Q   <="00000"; 
+       CDB_Q   <="11111"; 
        PC_in   <="00000000000000000000000000000000";
        Opcode_in<="0100";
        R_dest   <="00001";

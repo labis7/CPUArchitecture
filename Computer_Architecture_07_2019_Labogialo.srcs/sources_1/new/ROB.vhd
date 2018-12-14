@@ -77,7 +77,7 @@ signal ready,ex_stat  : bit_1;
 signal top_s,bot_s  : std_logic_vector (4 downto 0);
 
 begin
-process (clk)
+process (clk,top_s,bot_s)
 variable top : std_logic_vector (4 downto 0);             -- tha arxikopoihsoyme sto ROB1 (00000)   = bot
 variable bot : std_logic_vector (4 downto 0);           -- tha arxikopoihsoyme sto ROB1 (00000)   = top
                                                           -- einai o deiktis poy mas deixnei se poio stoixeio ths fifo tha grapsoume   
@@ -86,16 +86,26 @@ begin
 --RESET
 --bot_S<="00000";
 --TOP_S<="00000";
+---------spasimo arxikhs
+if((top_s(0) /='1') AND (top_s(0) /='0') ) THEN 
+    BOT := "00001";
+    top := "00000";
+    --ready(1) <= '0'; --3ekiname gia init apo 00000
+    else
+    top  := top_s;
+    bot:=  bot_s;  --(start)
+end if;
 
 
-top  := top_s;
-bot:= bot_s;  --(start)
+
+
 
 if clk'event and clk = '1' then
 -----------------------------------------------------------------------------------------------------     
 -- Issue --> ROB (erxetai apo issue kainourgia entoli kai prepei na kataxwrihei sto ROB)  
 -----------------------------------------------------------------------------------------------------
     if en='1' then 
+    if(top > bot) then
         for i in to_integer(unsigned(top)) to to_integer(unsigned(bot)) loop              --3ekinwntaw apo ta pio kainourgia,tha psa3oume thn teleutaia e3arthsh
             if (Dest(i) = Rk) then          
                 if (ready(i) = '1') then
@@ -133,7 +143,7 @@ if clk'event and clk = '1' then
                 null;
             end if;
         end loop;
-        
+      end if;
         
         
      --apothikeush timhs  
@@ -158,14 +168,15 @@ end if;         --(END_IF TOU CLOCK)
 ---------------------------------------------------------------------------------------------------------------
 ----------------------------------------Distribute value of CDB where needed----------------------------------- 
 ---------------------------------------------------------------------------------------------------------------
-
-for i in to_integer(unsigned(top_s)) to to_integer(unsigned(bot)) loop   -- apo to palio top 3ekiname, thewrwntas pws ta apo panw exoun kanei swsta to forward pou pithanon na dhmiourgouse thema
-    ---den tha elegxoume gia to i==0 to corner case,pou o cdb efere twra thn timh, gt den mas noiazei na thn apothikeusoume kai na xasoume kuklo, h parapanw diadikasia to kalupse    
-    if(to_integer(unsigned(CDB_Q)) = i)  THEN  -- brikame to ROB# pou xreiazetai to  value tou (apo ton cdb)
-       Value(i) <=  CDB_V;                     --mporei na to xreiastoun perissotera apo 1 ,opote den kanoume kanena exit apo to loop
-       Ready(i) <= '1';                        -- h katastash ginetai pleon ready
-    end if;
-end loop;
+if(top >= bot) then
+    for i in to_integer(unsigned(top_s)) to to_integer(unsigned(bot)) loop   -- apo to palio top 3ekiname, thewrwntas pws ta apo panw exoun kanei swsta to forward pou pithanon na dhmiourgouse thema
+        ---den tha elegxoume gia to i==0 to corner case,pou o cdb efere twra thn timh, gt den mas noiazei na thn apothikeusoume kai na xasoume kuklo, h parapanw diadikasia to kalupse    
+        if(to_integer(unsigned(CDB_Q)) = i)  THEN  -- brikame to ROB# pou xreiazetai to  value tou (apo ton cdb)
+           Value(i) <=  CDB_V;                     --mporei na to xreiastoun perissotera apo 1 ,opote den kanoume kanena exit apo to loop
+           Ready(i) <= '1';                        -- h katastash ginetai pleon ready
+        end if;
+    end loop;
+end if;
 
 ---------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------delete ROB1 (commited)  and bot++(bot erase)-----------------------------------
