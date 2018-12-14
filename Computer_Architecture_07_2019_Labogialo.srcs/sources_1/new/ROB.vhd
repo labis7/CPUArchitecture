@@ -36,7 +36,7 @@ use ieee.numeric_std.all;
 entity ROB is
   Port ( CLK    :IN STD_LOGIC;
          CDB_V  : in STD_LOGIC_VECTOR (31 downto 0);
-         CDB_Q  : in STD_LOGIC_VECTOR (31 downto 0);
+         CDB_Q  : in STD_LOGIC_VECTOR (4 downto 0); -- itan 31 bits ...giati?
          PC_in  : in STD_LOGIC_VECTOR (31 downto 0);
          Opcode_in : in STD_LOGIC_VECTOR (3 downto 0); --4 bit. type kai op
          R_dest : in STD_LOGIC_VECTOR (4 downto 0);
@@ -93,7 +93,7 @@ bot:= bot_s;  --(start)
 
 if clk'event and clk = '1' then
 -----------------------------------------------------------------------------------------------------     
--- Issue --> ROB (erxetai apo issue kainourgia entoli kai prepei na aktaxwrihei sto ROB)  
+-- Issue --> ROB (erxetai apo issue kainourgia entoli kai prepei na kataxwrihei sto ROB)  
 -----------------------------------------------------------------------------------------------------
     if en='1' then 
         for i in to_integer(unsigned(top)) to to_integer(unsigned(bot)) loop              --3ekinwntaw apo ta pio kainourgia,tha psa3oume thn teleutaia e3arthsh
@@ -180,8 +180,8 @@ end if;
 
 --enhmerwsh twn out timws tou bot opws dest,ready_status k.a.
 if clk'event and clk = '1' then
-    ROB1_RES  <= Value(to_integer(unsigned(bot)));
-    ROB1_DEST <= Dest(to_integer(unsigned(bot)));
+    ROB1_RES       <= Value(to_integer(unsigned(bot)));
+    ROB1_DEST      <= Dest(to_integer(unsigned(bot)));
     ready_out      <= ready(to_integer(unsigned(bot)));
     exception_code <= ex_stat(to_integer(unsigned(bot)));
 end if;
