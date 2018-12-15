@@ -34,15 +34,12 @@ USE ieee.numeric_std.ALL;
 entity RF is
     Port ( CLK : in STD_LOGIC;
            RST : in STD_LOGIC;
-           CDB_Q : in STD_LOGIC_VECTOR (4 downto 0);
            ROB_R_Dest : in STD_LOGIC_VECTOR (4 downto 0);
            Rk_addr : in STD_LOGIC_VECTOR (4 downto 0);
            Rj_addr : in STD_LOGIC_VECTOR (4 downto 0);         
            Value : in STD_LOGIC_VECTOR (31 downto 0);
            RS_ID : in STD_LOGIC_VECTOR (4 downto 0);
            
-           Qk_out :out STD_LOGIC_VECTOR (4 downto 0);
-           Qj_out :out STD_LOGIC_VECTOR (4 downto 0);
            Rk_V : out STD_LOGIC_VECTOR (31 downto 0);
            Rj_V : out STD_LOGIC_VECTOR (31 downto 0));
 end RF;
@@ -382,7 +379,7 @@ R31: RF_PART
 Rf_proc : PROCESS(CLK,ROB_R_Dest,Rk_addr,Rj_addr,R_out_tmp,Value)
 variable cdb_q_num,R_Dest_num, i, Rk_addr_num,Rj_addr_num  : integer;
 BEGIN   
-cdb_Q_num:=0;                          
+--cdb_Q_num:=0;                          
 R_Dest_num := to_integer(signed(ROB_R_dest));
 Rk_addr_num:= to_integer(signed(Rk_addr));
 Rj_addr_num := to_integer(signed(Rj_addr));

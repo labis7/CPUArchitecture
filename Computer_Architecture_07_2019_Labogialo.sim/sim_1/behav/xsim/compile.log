@@ -1,2 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/ROB.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity ROB
+INFO: [VRFC 10-163] Analyzing VHDL file "L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sim_1/new/tb_ROB.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity tb_ROB

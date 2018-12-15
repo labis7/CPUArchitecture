@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_ROB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_ROB" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="176800001fs"></ZoomEndTime>
+      <Cursor1Time time="25000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="203"></NameColumnWidth>
+      <ValueColumnWidth column_width="87"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="21" />
+   <wvobject fp_name="/tb_ROB/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/CDB_V" type="array">
+      <obj_property name="ElementShortName">CDB_V[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CDB_V[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/CDB_Q" type="array">
+      <obj_property name="ElementShortName">CDB_Q[4:0]</obj_property>
+      <obj_property name="ObjectShortName">CDB_Q[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/PC_in" type="array">
+      <obj_property name="ElementShortName">PC_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/Opcode_in" type="array">
+      <obj_property name="ElementShortName">Opcode_in[3:0]</obj_property>
+      <obj_property name="ObjectShortName">Opcode_in[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/R_dest" type="array">
+      <obj_property name="ElementShortName">R_dest[4:0]</obj_property>
+      <obj_property name="ObjectShortName">R_dest[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/Rk" type="array">
+      <obj_property name="ElementShortName">Rk[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Rk[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/Rj" type="array">
+      <obj_property name="ElementShortName">Rj[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Rj[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/En" type="logic">
+      <obj_property name="ElementShortName">En</obj_property>
+      <obj_property name="ObjectShortName">En</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/ROB1_RES" type="array">
+      <obj_property name="ElementShortName">ROB1_RES[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ROB1_RES[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/Dest[1]" type="array">
+      <obj_property name="ElementShortName">[1][4:0]</obj_property>
+      <obj_property name="ObjectShortName">[1][4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/ROB1_DEST" type="array">
+      <obj_property name="ElementShortName">ROB1_DEST[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ROB1_DEST[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/Rob_ID" type="array">
+      <obj_property name="ElementShortName">Rob_ID[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Rob_ID[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/ready_out" type="logic">
+      <obj_property name="ElementShortName">ready_out</obj_property>
+      <obj_property name="ObjectShortName">ready_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/Qk" type="array">
+      <obj_property name="ElementShortName">Qk[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Qk[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/Qj" type="array">
+      <obj_property name="ElementShortName">Qj[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Qj[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/Vk" type="array">
+      <obj_property name="ElementShortName">Vk[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Vk[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/Vj" type="array">
+      <obj_property name="ElementShortName">Vj[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Vj[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/CLK_period" type="other">
+      <obj_property name="ElementShortName">CLK_period</obj_property>
+      <obj_property name="ObjectShortName">CLK_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/top_s" type="array">
+      <obj_property name="ElementShortName">top_s[4:0]</obj_property>
+      <obj_property name="ObjectShortName">top_s[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ROB/dut/bot_s" type="array">
+      <obj_property name="ElementShortName">bot_s[4:0]</obj_property>
+      <obj_property name="ObjectShortName">bot_s[4:0]</obj_property>
+   </wvobject>
+</wave_config>

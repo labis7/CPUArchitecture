@@ -48,7 +48,7 @@ end Tomatulo;
 
 architecture Behavioral of Tomatulo is
 
-SIGNAL  MC_Res_tmp, CDB_V_tmp,rk_v_tmp, rj_v_tmp  :STD_LOGIC_VECTOR (31 downto 0);
+SIGNAL  MC_Res_tmp, CDB_V_tmp,rk_v_tmp, rj_v_tmp ,RF_VAL_tmp  :STD_LOGIC_VECTOR (31 downto 0);
 SIGNAL  Rj_addr_tmp,rs_id_tmp,QK_OUT_tmp,Qj_OUT_tmp,opcode_tmp  : STD_LOGIC_VECTOR (4 downto 0);
 signal   MC_tag_tmp,CDB_Q_tmp,R_dest_tmp,Rk_addr_tmp : STD_LOGIC_VECTOR (4 downto 0);
          
@@ -58,24 +58,36 @@ signal rst_tmp,free_out_tmp,stop_tmp,free_a_out_tmp,free_l_out_tmp : std_logic;
   
 
 component MC is
-    Port ( CLK          : in STD_LOGIC;
-           OpCode       : in STD_LOGIC_VECTOR (4 downto 0);
-           Vk           : in STD_LOGIC_VECTOR (31 downto 0);
-           Qk           : in STD_LOGIC_VECTOR (4 downto 0);
-           Vj           : in STD_LOGIC_VECTOR (31 downto 0);
-           Qj           : in STD_LOGIC_VECTOR (4 downto 0);
-           CDB_V_IN     : in STD_LOGIC_VECTOR (31 downto 0);
-           CDB_Q_IN     : in STD_LOGIC_VECTOR (4 downto 0);
-           Grand_in_A   :in STD_LOGIC;
-           Grand_in_L   :in STD_LOGIC;
-           Fu_type      : in STD_LOGIC_VECTOR (1 downto 0);
+    Port (CLK : in STD_LOGIC;
+           OpCode : in STD_LOGIC_VECTOR (4 downto 0);
+           Vk : in STD_LOGIC_VECTOR (31 downto 0);
+           Qk : in STD_LOGIC_VECTOR (4 downto 0);
+           Vj : in STD_LOGIC_VECTOR (31 downto 0);
+           Qj : in STD_LOGIC_VECTOR (4 downto 0);
+           CDB_V_IN : in STD_LOGIC_VECTOR (31 downto 0);
+           CDB_Q_IN : in STD_LOGIC_VECTOR (4 downto 0);
+           Grand_in_A :in STD_LOGIC;
+           Grand_in_L :in STD_LOGIC;
+           Fu_type   : in STD_LOGIC_VECTOR (1 downto 0);
            Stop_In          : in STD_LOGIC;
+           rob_vk :in STD_LOGIC_VECTOR (31 downto 0);
+           rob_vj : in STD_LOGIC_VECTOR (31 downto 0);
+           rob_qk : in STD_LOGIC_VECTOR (4 downto 0);
+           rob_qj : in STD_LOGIC_VECTOR (4 downto 0);
+           rob_id  : in STD_LOGIC_VECTOR (4 downto 0);
+           rob_dest: in STD_LOGIC_VECTOR (4 downto 0);
+           rob_status: in STD_LOGIC;
+           rob_value: in STD_LOGIC_VECTOR (31 downto 0);
            
-           ID_out       : out std_logic_vector(4 downto 0);
-           Poke_out_A   :out STD_LOGIC;
-           Poke_out_L   :out STD_LOGIC;           
-           Result       : out STD_LOGIC_VECTOR (31 downto 0);
-           Tag_out      : out STD_LOGIC_VECTOR (4 downto 0);
+           
+           rob_en :out STD_LOGIC;
+           rf_dest_out: out std_logic_vector(4 downto 0); --pros rf
+           rf_val_out : out STD_LOGIC_VECTOR (31 downto 0);  --pros rf         
+           ID_out : out std_logic_vector(4 downto 0);
+           Poke_out_A :out STD_LOGIC;
+           Poke_out_L :out STD_LOGIC;           
+           Result : out STD_LOGIC_VECTOR (31 downto 0);
+           Tag_out : out STD_LOGIC_VECTOR (4 downto 0);
            Free_a_out : out STD_LOGIC;
            Free_l_out : out STD_LOGIC);
 end component;
@@ -102,19 +114,16 @@ component Issue is
 end component;
 
 component RF is
-    Port ( CLK     : in STD_LOGIC;
-           RST     : in STD_LOGIC;
-           CDB_Q   : in STD_LOGIC_VECTOR (4 downto 0);
-           R_Dest  : in STD_LOGIC_VECTOR (4 downto 0);
+    Port ( CLK : in STD_LOGIC;
+           RST : in STD_LOGIC;          
+           ROB_R_Dest : in STD_LOGIC_VECTOR (4 downto 0);
            Rk_addr : in STD_LOGIC_VECTOR (4 downto 0);
            Rj_addr : in STD_LOGIC_VECTOR (4 downto 0);         
-           CDB_V    : in STD_LOGIC_VECTOR (31 downto 0);
-           RS_ID    : in STD_LOGIC_VECTOR (4 downto 0);
+           Value : in STD_LOGIC_VECTOR (31 downto 0);
+           RS_ID : in STD_LOGIC_VECTOR (4 downto 0);
            
-           Qk_out :out STD_LOGIC_VECTOR (4 downto 0);
-           Qj_out :out STD_LOGIC_VECTOR (4 downto 0);
-           Rk_V     : out STD_LOGIC_VECTOR (31 downto 0);
-           Rj_V     : out STD_LOGIC_VECTOR (31 downto 0));
+           Rk_V : out STD_LOGIC_VECTOR (31 downto 0);
+           Rj_V : out STD_LOGIC_VECTOR (31 downto 0));
 end component;
 
 component CDB is
@@ -167,14 +176,12 @@ RF_Unit: RF
 Port Map(
          CLK     =>clk,
          RST     =>reset    ,
-         CDB_Q   =>CDB_Q_tmp  ,
-         R_Dest  =>R_dest_tmp ,
+         ROB_R_Dest  =>R_dest_tmp ,
          Rk_addr =>Rk_addr_tmp,
-         Rj_addr =>Rj_addr_tmp,
-         CDB_V   =>CDB_V_tmp  ,
+         Rj_addr =>Rj_addr_tmp,        
          RS_ID   =>rs_id_tmp  ,  
-         Qk_out  =>QK_OUT_tmp ,         
-         Qj_out  =>Qj_OUT_tmp ,
+         Value   =>rf_val_tmp ,
+         
          Rk_V    =>rk_v_tmp   ,
          Rj_V    =>rj_v_tmp   );
          
@@ -194,7 +201,19 @@ Port Map(
         Grand_in_A=>grand_tmp(1),
         Grand_in_L=>grand_tmp(0), 
         STOP_in   =>stop_tmp,
-                 
+        rob_vk    =>,
+        rob_vj    =>,
+        rob_qk    =>,
+        rob_qj    =>,
+        rob_id    =>,
+        rob_dest  =>,
+        rob_status=>,
+        rob_value =>,
+         
+         
+        rob_en      =>,
+        rf_dest_out =>R_dest_tmp,
+        rf_val_out  =>RF_VAL_tmp ,           
         ID_out    =>RS_ID_tmp   ,
         Poke_out_A=>poke_tmp(1) ,
         Poke_out_L=>poke_tmp(0) ,

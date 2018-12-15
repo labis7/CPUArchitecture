@@ -51,8 +51,6 @@ entity MC is
            rob_id  : in STD_LOGIC_VECTOR (4 downto 0);
            rob_dest: in STD_LOGIC_VECTOR (4 downto 0);
            rob_status: in STD_LOGIC;
-           cdb_v: in STD_LOGIC_VECTOR (31 downto 0);
-           cdb_q : in STD_LOGIC_VECTOR (4 downto 0);
            rob_value: in STD_LOGIC_VECTOR (31 downto 0);
            
            
@@ -115,6 +113,9 @@ Component MC_RS_FU_L
 end component;
 
 begin
+cdb_v_tmp<=cdb_v_in;
+cdb_q_tmp<=cdb_q_in;
+
 MC_RS_FU_A_Unit : MC_RS_FU_A
 Port Map(clk       =>clk,
          Grand_in_A=>grand_in_A,
@@ -122,8 +123,8 @@ Port Map(clk       =>clk,
          Vj        =>Vj_tmp,
          Qk        =>Qk_tmp,
          Qj        =>Qj_tmp,
-         CDB_V     =>CDB_V_IN,--PROWTHISI TIMWS CDB_V,CDB_Q KAI STIS 2 RESERVATION MONADES,xwris kanena elegxo h e3arthsh, oi upo-MC tha antikatasthsoun oti broun aparaithto
-         CDB_Q     =>CDB_Q_IN,
+         CDB_V     =>CDB_V_tmp,--PROWTHISI TIMWS CDB_V,CDB_Q KAI STIS 2 RESERVATION MONADES,xwris kanena elegxo h e3arthsh, oi upo-MC tha antikatasthsoun oti broun aparaithto
+         CDB_Q     =>CDB_Q_tmp,
          OpCode    =>Opcode_A_tmp,
          stop      =>stop_a_tmp,   
          ID_ROB_RS =>ID_ROB_RS_TMP,
@@ -141,8 +142,8 @@ Port Map(clk       =>clk,
          Vj        =>Vj_tmp,
          Qk        =>Qk_tmp,
          Qj        =>Qj_tmp,
-         CDB_V     =>CDB_V_IN,--PROWTHISI TIMWS CDB_V,CDB_Q KAI STIS 2 RESERVATION MONADES,xwris kanena elegxo h e3arthsh, oi upo-MC tha antikatasthsoun oti broun aparaithto
-         CDB_Q     =>CDB_Q_IN,
+         CDB_V     =>CDB_V_tmp,--PROWTHISI TIMWS CDB_V,CDB_Q KAI STIS 2 RESERVATION MONADES,xwris kanena elegxo h e3arthsh, oi upo-MC tha antikatasthsoun oti broun aparaithto
+         CDB_Q     =>CDB_Q_tmp,
          OpCode    =>Opcode_L_tmp,
          stop      =>stop_l_tmp, 
                    
@@ -198,9 +199,9 @@ end if;
 
 ---epishs mia logikh pou tha apofasizei ti value tha dwsei sthn RF, tou ROB h tou cdb(ROB OTAN rob1 einai ready opote mallon o cdb exei value gia kapio allo rob#, h cdb_v otan rob1 not ready kai cdb_q = rob_r_dest )
 --rob_dest,rob_value pernoun apodw
-if((rob_dest = cdb_q)) then  -- perpitwsh pou rob1_dest = cdb_q (dil. rob1 not ready alla molis exei bgei to apotelesma ston cdb)
+if((rob_dest = cdb_q_tmp)) then  -- perpitwsh pou rob1_dest = cdb_q (dil. rob1 not ready alla molis exei bgei to apotelesma ston cdb)
     rf_dest_out <= rob_dest; --(h cdb_q, einai to idio)
-    rf_val_out   <= cdb_v;
+    rf_val_out   <= cdb_v_tmp;
 elsif(rob_status = '1') then --ready to rob1, ara bazoume to value tou sthn rf gia egraffh
     rf_dest_out <= rob_dest;
     rf_val_out   <= rob_value;
