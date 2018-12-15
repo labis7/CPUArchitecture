@@ -55,9 +55,7 @@ entity ROB is
          Qk            : out STD_LOGIC_VECTOR (4 downto 0);                    --auth h timh einai gia ta pedia q ths RS, h RS tha akouei sunexeia to cdb(opws kai kanei), wste na brei kapoio rob# na bouti3ei gia na to balei sta dedomena ths, pernaei prwta apo MC 
          Qj            : out STD_LOGIC_VECTOR (4 downto 0);                    --pernane prwta apo MC
          Vk            : out STD_LOGIC_VECTOR (31 downto 0);                    -- timh otan, ta q parapanw einai 11111(pou shmainei oti uparxei mesa ston ROB kai exei etoimh timh), to 00000 shmainei oti den uparxei(kai epilegoume RF gia ta values), enw se allh periptwsh ta Q koubalane to rob# pou perimenoume(V adiaforo)
-         Vj            : out STD_LOGIC_VECTOR (31 downto 0)
-
-);
+         Vj            : out STD_LOGIC_VECTOR (31 downto 0));
 end ROB;
 
 architecture Behavioral of ROB is

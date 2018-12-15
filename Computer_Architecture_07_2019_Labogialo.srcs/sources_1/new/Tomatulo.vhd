@@ -48,12 +48,12 @@ end Tomatulo;
 
 architecture Behavioral of Tomatulo is
 
-SIGNAL  MC_Res_tmp, CDB_V_tmp,rk_v_tmp, rj_v_tmp ,RF_VAL_tmp  :STD_LOGIC_VECTOR (31 downto 0);
-SIGNAL  Rj_addr_tmp,rs_id_tmp,QK_OUT_tmp,Qj_OUT_tmp,opcode_tmp  : STD_LOGIC_VECTOR (4 downto 0);
+SIGNAL  MC_Res_tmp, CDB_V_tmp,rk_v_tmp, rj_v_tmp ,RF_VAL_tmp,rob_vk_tmp,rob_vj_tmp,rob_qk_tmp,rob_qj_tmp,rob_value_tmp,pc_tmp  :STD_LOGIC_VECTOR (31 downto 0);
+SIGNAL  Rj_addr_tmp,rs_id_tmp,QK_OUT_tmp,Qj_OUT_tmp,opcode_tmp ,Rob_ID_tmp,rob_dest_tmp : STD_LOGIC_VECTOR (4 downto 0);
 signal   MC_tag_tmp,CDB_Q_tmp,R_dest_tmp,Rk_addr_tmp : STD_LOGIC_VECTOR (4 downto 0);
          
 SIGNAL  poke_tmp, grand_tmp  : STD_LOGIC_VECTOR (1 downto 0);
-signal rst_tmp,free_out_tmp,stop_tmp,free_a_out_tmp,free_l_out_tmp : std_logic;
+signal rst_tmp,free_out_tmp,stop_tmp,free_a_out_tmp,free_l_out_tmp,rob_en_tmp,rob_status_tmp,exception_code_tmp : std_logic;
 
   
 
@@ -137,6 +137,30 @@ component CDB is
            POKE     : in STD_LOGIC_VECTOR (1 downto 0));
 end component;
 
+component ROB is
+  Port ( CLK    :IN STD_LOGIC;
+         CDB_V  : in STD_LOGIC_VECTOR (31 downto 0);
+         CDB_Q  : in STD_LOGIC_VECTOR (4 downto 0); -- itan 31 bits ...giati?
+         PC_in  : in STD_LOGIC_VECTOR (31 downto 0);
+         Opcode_in : in STD_LOGIC_VECTOR (3 downto 0); --4 bit. type kai op
+         R_dest : in STD_LOGIC_VECTOR (4 downto 0);
+         Rk     : in STD_LOGIC_VECTOR (4 downto 0);
+         Rj     : in STD_LOGIC_VECTOR (4 downto 0);
+         En     : in STD_LOGIC;
+         
+         
+         
+         --out
+         ROB1_RES      : out STD_LOGIC_VECTOR (31 downto 0);  --pigainoun MC gia na apofasisei an diale3ei auta h ton CDB kateutheian se ena corner case(blepe MC sxolia)
+         ROB1_DEST     : out STD_LOGIC_VECTOR (4 downto 0);
+         ready_out     : out STD_LOGIC;
+         exception_code: out STD_LOGIC;
+         Rob_ID        : out STD_LOGIC_VECTOR (4 downto 0);                    --Asyxrona stelnetai to ID tou rob slot sto opoio prokeitai na graftei h entolh pou exei erthei TWRA
+         Qk            : out STD_LOGIC_VECTOR (4 downto 0);                    --auth h timh einai gia ta pedia q ths RS, h RS tha akouei sunexeia to cdb(opws kai kanei), wste na brei kapoio rob# na bouti3ei gia na to balei sta dedomena ths, pernaei prwta apo MC 
+         Qj            : out STD_LOGIC_VECTOR (4 downto 0);                    --pernane prwta apo MC
+         Vk            : out STD_LOGIC_VECTOR (31 downto 0);                    -- timh otan, ta q parapanw einai 11111(pou shmainei oti uparxei mesa ston ROB kai exei etoimh timh), to 00000 shmainei oti den uparxei(kai epilegoume RF gia ta values), enw se allh periptwsh ta Q koubalane to rob# pou perimenoume(V adiaforo)
+         Vj            : out STD_LOGIC_VECTOR (31 downto 0));
+end component;
 
 begin
 
@@ -201,17 +225,17 @@ Port Map(
         Grand_in_A=>grand_tmp(1),
         Grand_in_L=>grand_tmp(0), 
         STOP_in   =>stop_tmp,
-        rob_vk    =>,
-        rob_vj    =>,
-        rob_qk    =>,
-        rob_qj    =>,
-        rob_id    =>,
-        rob_dest  =>,
-        rob_status=>,
-        rob_value =>,
+        rob_vk    =>rob_vk_tmp,
+        rob_vj    =>rob_vj_tmp,
+        rob_qk    =>rob_qk_tmp ,
+        rob_qj    =>rob_qj_tmp,
+        rob_id    =>Rob_ID_tmp,
+        rob_dest  =>rob_dest_tmp,
+        rob_status=>rob_status_tmp,
+        rob_value =>rob_value_tmp,
          
          
-        rob_en      =>,
+        rob_en      =>rob_en_tmp,
         rf_dest_out =>R_dest_tmp,
         rf_val_out  =>RF_VAL_tmp ,           
         ID_out    =>RS_ID_tmp   ,
@@ -221,6 +245,29 @@ Port Map(
         Tag_out   =>MC_Tag_tmp  ,
         Free_a_out  =>free_a_out_tmp,
         Free_l_out  =>free_l_out_tmp);
+
+ROB_Unit: ROB 
+Port Map( CLK       =>clk,
+         CDB_V     =>CDB_V_tmp,
+         CDB_Q     =>CDB_q_tmp,
+         PC_in     =>pc_tmp,
+         Opcode_in =>opcode_tmp(3 downto 0),
+         R_dest    =>r_dest_tmp, 
+         Rk        =>rk_addr_tmp,
+         Rj        =>rj_addr_tmp,
+         En        =>rob_en_tmp,
+         
+      
+         --out
+         ROB1_RES      =>rob_value_tmp, --pigainoun MC gia na apofasisei an diale3ei auta h ton CDB kateutheian se ena corner case(blepe MC sxolia)
+         ROB1_DEST     =>rob_dest_tmp,
+         ready_out     =>rob_status_tmp,
+         exception_code=>exception_code_tmp,
+         Rob_ID        =>Rob_ID_tmp,                  --Asyxrona stelnetai to ID tou rob slot sto opoio prokeitai na graftei h entolh pou exei erthei TWRA
+         Vk            =>rob_vk_tmp,                  --auth h timh einai gia ta pedia q ths RS, h RS tha akouei sunexeia to cdb(opws kai kanei), wste na brei kapoio rob# na bouti3ei gia na to balei sta dedomena ths, pernaei prwta apo MC 
+         Vj            =>rob_vj_tmp,                  --pernane prwta apo MC
+         Qk            =>rob_qk_tmp,                   -- timh otan, ta q parapanw einai 11111(pou shmainei oti uparxei mesa ston ROB kai exei etoimh timh), to 00000 shmainei oti den uparxei(kai epilegoume RF gia ta values), enw se allh periptwsh ta Q koubalane to rob# pou perimenoume(V adiaforo)
+         Qj            =>rob_qj_tmp);
 
 
 end Behavioral;
