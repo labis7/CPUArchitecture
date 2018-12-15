@@ -46,7 +46,7 @@ entity MC_RS_FU_A is
           
            Poke_out_A: out STD_LOGIC;
            Res_A     : out STD_LOGIC_VECTOR (31 downto 0);
-           ID_A_OUT  : out STD_LOGIC_VECTOR (4 downto 0);   --POU THA TO BLEPEI TO ISSUE GIA NA TO BALEI STON ANTISTOIXO REG POU PERIMENEI APOTELESMA
+          -- ID_A_OUT  : out STD_LOGIC_VECTOR (4 downto 0);   
            Tag_A     : out STD_LOGIC_VECTOR (4 downto 0);       -- GIA THN FU
            Free_A    : out STD_LOGIC
            );                         --THA EINAI UPEUTHUNO GIA THN ENERGOPOIHSH THS ROHS TWN NEWN ENTOLVN KAI TOU EN THS RS
@@ -375,7 +375,7 @@ elsif (((free_out_tmp(2)/='0') or (opcode_rs1_out_tmp(4)/='0'))and((Qk_TMP(0)='0
     qk_rs1_in_tmp <= qk_tmp;
     qj_rs1_in_tmp <= qj_tmp;
     OPCODE_RS1_IN_TMP<=opcode_tmp;
-    ID_A_OUT <= id_rs1_out_tmp;
+    --ID_A_OUT <= id_rs1_out_tmp;
     --ID_ROB_RS
     en_rs1_tmp<="111";
     en_rs2_tmp<="000";
@@ -389,7 +389,7 @@ elsif (((free_out_tmp(1)/='0')or (opcode_rs2_out_tmp(4)/='0'))and((Qk_TMP(0)='0'
     qk_rs2_in_tmp <= qk_tmp;
     qj_rs2_in_tmp <= qj_tmp;
     OPCODE_RS2_IN_TMP<=opcode_tmp;
-    ID_A_OUT <= id_rs2_out_tmp;
+    --ID_A_OUT <= id_rs2_out_tmp;
     en_rs1_tmp<="000";
     en_rs2_tmp<="111";
     en_rs3_tmp<="000";
@@ -402,7 +402,7 @@ elsif (((free_out_tmp(1)/='0')or (opcode_rs2_out_tmp(4)/='0'))and((Qk_TMP(0)='0'
     qk_rs3_in_tmp <= qk_tmp;
     qj_rs3_in_tmp <= qj_tmp;
     OPCODE_RS3_IN_TMP<=opcode_tmp;
-    ID_A_OUT <= id_rs3_out_tmp;
+   -- ID_A_OUT <= id_rs3_out_tmp;
     en_rs1_tmp<="000";
     en_rs2_tmp<="000";
     en_rs3_tmp<="111";

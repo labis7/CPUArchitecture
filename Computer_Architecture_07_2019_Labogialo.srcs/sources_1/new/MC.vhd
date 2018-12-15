@@ -87,7 +87,7 @@ Port (     clk       : in STD_LOGIC;
             
            Poke_out_A: out STD_LOGIC;
            Res_A     : out STD_LOGIC_VECTOR (31 downto 0);
-           ID_A_OUT  : out STD_LOGIC_VECTOR (4 downto 0);   --POU THA TO BLEPEI TO ISSUE GIA NA TO BALEI STON ANTISTOIXO REG POU PERIMENEI APOTELESMA
+          --ID_A_OUT  : out STD_LOGIC_VECTOR (4 downto 0);   
            Tag_A     : out STD_LOGIC_VECTOR (4 downto 0);       -- GIA THN FU
            Free_A    : out STD_LOGIC);                         --THA EINAI UPEUTHUNO GIA THN ENERGOPOIHSH THS ROHS TWN NEWN ENTOLVN KAI TOU EN THS RS
 end component;
@@ -131,7 +131,7 @@ Port Map(clk       =>clk,
                    
          Poke_out_A=>Poke_out_A,
          Res_A     =>result_a_tmp,
-         ID_A_OUT  =>id_a_out_tmp,         
+       
          Tag_A     =>Tag_A_tmp,
          Free_A    =>free_A_tmp); 
 
@@ -218,38 +218,38 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
     if(free_A_tmp='1') Then        --des an einai diathesimh h Arithmetic Unit
     
     
-    ------------------------------------- TIS PARAKATW TIMES THA TIS PAREI EITE APO ROB EITE APO RF(SHMEIWSH MANOU)
-    if(rob_qk ="11110") then --EKMETALEUOMASTE THN DESMEUMENH TIMH GIA NA DEI3OUME OTI TO STOIXEIO DEN UPARXEI MESA STON ROB(epilegoume), to 11111 deixnei oti uparxei ston ROB kai oriste h timh tou(den epilegoume rf)
-        Vk_tmp <= Vk; --pare thn timh apo rf
-        Qk_tmp <= "11111"; -- olo asous mesa sto rs. gt thn exoume thn timh
-     elsif(rob_qk ="11111") then -- auto shmainei pws uparxei h timh sto ROB kai einai etoimh, DEN epilgeoume rf
-        Vk_tmp<=rob_vk;
-        Qk_tmp <= rob_qk; --11111
-     else                   ---periptwsh pou uparxei ston ROB alla den einai diathesimh h timh  (Qk=rob# apopou perimenoume)
-        Qk_tmp <= rob_qk;
-     end if;
+        ------------------------------------- TIS PARAKATW TIMES THA TIS PAREI EITE APO ROB EITE APO RF(SHMEIWSH MANOU)
+        if(rob_qk ="11110") then --EKMETALEUOMASTE THN DESMEUMENH TIMH GIA NA DEI3OUME OTI TO STOIXEIO DEN UPARXEI MESA STON ROB(epilegoume), to 11111 deixnei oti uparxei ston ROB kai oriste h timh tou(den epilegoume rf)
+            Vk_tmp <= Vk; --pare thn timh apo rf
+            Qk_tmp <= "11111"; -- olo asous mesa sto rs. gt thn exoume thn timh
+         elsif(rob_qk ="11111") then -- auto shmainei pws uparxei h timh sto ROB kai einai etoimh, DEN epilgeoume rf
+            Vk_tmp<=rob_vk;
+            Qk_tmp <= rob_qk; --11111
+         else                   ---periptwsh pou uparxei ston ROB alla den einai diathesimh h timh  (Qk=rob# apopou perimenoume)
+            Qk_tmp <= rob_qk;
+         end if;
  
-     if(rob_qj ="11110") then --EKMETALEUOMASTE THN DESMEUMENH TIMH GIA NA DEI3OUME OTI TO STOIXEIO DEN UPARXEI MESA STON ROB(epilegoume), to 11111 deixnei oti uparxei ston ROB kai oriste h timh tou(den epilegoume rf)
-        Vj_tmp <= Vj; --pare thn timh apo rf
-        Qj_tmp <= "11111"; -- olo asous mesa sto rs. gt thn exoume thn timh
-     elsif(rob_qj ="11111") then -- auto shmainei pws uparxei h timh sto ROB kai einai etoimh, DEN epilgeoume rf
-        Vj_tmp<=rob_vj;
-        Qj_tmp <= rob_qj; --11111
-     else                   ---periptwsh pou uparxei ston ROB alla den einai diathesimh h timh  (Qj=rob# apopou perimenoume)
-        Qj_tmp <= rob_qj;
-     end if;
+         if(rob_qj ="11110") then --EKMETALEUOMASTE THN DESMEUMENH TIMH GIA NA DEI3OUME OTI TO STOIXEIO DEN UPARXEI MESA STON ROB(epilegoume), to 11111 deixnei oti uparxei ston ROB kai oriste h timh tou(den epilegoume rf)
+            Vj_tmp <= Vj; --pare thn timh apo rf
+            Qj_tmp <= "11111"; -- olo asous mesa sto rs. gt thn exoume thn timh
+         elsif(rob_qj ="11111") then -- auto shmainei pws uparxei h timh sto ROB kai einai etoimh, DEN epilgeoume rf
+            Vj_tmp<=rob_vj;
+            Qj_tmp <= rob_qj; --11111
+         else                   ---periptwsh pou uparxei ston ROB alla den einai diathesimh h timh  (Qj=rob# apopou perimenoume)
+            Qj_tmp <= rob_qj;
+         end if;
      
      
-      -------------------------
-        opcode_A_tmp <= opcode;
-        
-        free_a_out <= '1';      --gemisei me auto pou bazw twra, tha enhmerwthei auth h metablith asugxrona me to pou apanthsei (se ayton to kuklo to RS)
-       ------------ENABLE TOU ROB KAI NEO RS_ID(TOP_ROB_ID APO ROB)
-        ID_ROB_rs_TMP<=ROB_ID;--touto, pagainei sto shmeio pou energopoiheitai to prwto diathesimo slot tou RS gia na bgei sthn e3odo tou(RS#_ID)
-        rob_en<='1';
-       ----------------
-        stop_l_tmp<='1';   -- wste na stamathsei na roufaei pragmata pou blepei sthn eisodo tou(logiko RS)
-        stop_a_tmp<='0';
+        ------------------------
+         opcode_A_tmp <= opcode;
+         
+         free_a_out <= '1';      --gemisei me auto pou bazw twra, tha enhmerwthei auth h metablith asugxrona me to pou apanthsei (se ayton to kuklo to RS)
+        ------------ENABLE TOU ROB KAI NEO RS_ID(TOP_ROB_ID APO ROB)
+         ID_ROB_rs_TMP<=ROB_ID;--touto, pagainei sto shmeio pou energopoiheitai to prwto diathesimo slot tou RS gia na bgei sthn e3odo tou(RS#_ID)
+         rob_en<='1';
+        ----------------
+         stop_l_tmp<='1';   -- wste na stamathsei na roufaei pragmata pou blepei sthn eisodo tou(logiko RS)
+         stop_a_tmp<='0';
        
     else
         ------------DISABLE TOU ROB 
@@ -295,7 +295,8 @@ elsif((Opcode(3 downto 2) = "00")AND(stop_in='0')) then --an h entolh einai tupo
         
         rob_en<='0'; ----------DISABLE TOU ROB   (prosoxh na dw ton sugxronismo!!!)   
     end if;
-else null;
+else 
+    rob_en<='0';
 end if;
 
 

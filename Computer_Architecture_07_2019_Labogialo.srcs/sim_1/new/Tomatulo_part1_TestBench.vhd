@@ -96,45 +96,52 @@ begin
         Rj_addr <= "00010";
        
         wait for 10 ns;
-       
+       Issue_in <= '0';
         
-        Issue_in <= '1';
-        Fu_type <= "01";  --  gia arithmitikh pra3h
-        Fop <= "00";  --- gia prosthesh       
-        R_dest <= "00010";      
-        Rk_addr <= "00001";  -- gia na exoume e3arthsh apo to prohgoumeno
-        Rj_addr <= "00010";
+--        Issue_in <= '1';
+--        Fu_type <= "01";  --  gia arithmitikh pra3h
+--        Fop <= "00";  --- gia prosthesh       
+--        R_dest <= "00010";      
+--        Rk_addr <= "00001";  -- gia na exoume e3arthsh apo to prohgoumeno
+--        Rj_addr <= "00010";
         
-        wait for 10 ns;
+--        wait for 10 ns;
         
                 
-        Fu_type <= "01";  --  gia arithmitikh pra3h
-        Fop <= "00";  --- gia prosthesh       
-        R_dest <= "00011";      
-        Rk_addr <= "00010";  -- gia na exoume e3arthsh apo to prohgoumeno
-        Rj_addr <= "00011";
-        wait for 10 ns;      
-        Issue_in <= '1'; 
+--        Fu_type <= "01";  --  gia arithmitikh pra3h
+--        Fop <= "00";  --- gia prosthesh       
+--        R_dest <= "00011";      
+--        Rk_addr <= "00010";  -- gia na exoume e3arthsh apo to prohgoumeno
+--        Rj_addr <= "00011";
+--        wait for 10 ns;      
+--        Issue_in <= '1'; 
         
 
-         Issue_in <= '1';               
-        Fu_type <= "01";  --  gia arithmitikh pra3h
-        Fop <= "00";  --- gia prosthesh       
-        R_dest <= "00100";      
-        Rk_addr <= "00010";  -- gia na exoume e3arthsh apo to prohgoumeno
-        Rj_addr <= "00010";
-        wait for 30 ns;
-    -- Issue_in <= '0'; 
+--         Issue_in <= '1';               
+--        Fu_type <= "01";  --  gia arithmitikh pra3h
+--        Fop <= "00";  --- gia prosthesh       
+--        R_dest <= "00100";      
+--        Rk_addr <= "00010";  -- gia na exoume e3arthsh apo to prohgoumeno
+--        Rj_addr <= "00010";
+--        wait for 30 ns;
+--    -- Issue_in <= '0'; 
                       
-        Fu_type <= "01";  --  gia arithmitikh pra3h
-        Fop <= "00";  --- gia prosthesh       
-        R_dest <= "00101";      
-        Rk_addr <= "00100";  -- gia na exoume e3arthsh apo to prohgoumeno
-        Rj_addr <= "00101";        
+--        Fu_type <= "01";  --  gia arithmitikh pra3h
+--        Fop <= "00";  --- gia prosthesh       
+--        R_dest <= "00101";      
+--        Rk_addr <= "00100";  -- gia na exoume e3arthsh apo to prohgoumeno
+--        Rj_addr <= "00101";        
         
-        wait for 40 ns;
-        Issue_in <= '0';
+--        wait for 40 ns;
+--        Issue_in <= '0';
+        
+        
         --wait for 140 ns;
+        
+        
+        
+        
+        
         ----------------------------------------------------------------------------------extend
         
 --        ----- kateutheian apo to arxiko

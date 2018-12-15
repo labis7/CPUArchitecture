@@ -48,8 +48,8 @@ end Tomatulo;
 
 architecture Behavioral of Tomatulo is
 
-SIGNAL  MC_Res_tmp, CDB_V_tmp,rk_v_tmp, rj_v_tmp ,RF_VAL_tmp,rob_vk_tmp,rob_vj_tmp,rob_qk_tmp,rob_qj_tmp,rob_value_tmp,pc_tmp  :STD_LOGIC_VECTOR (31 downto 0);
-SIGNAL  Rj_addr_tmp,rs_id_tmp,QK_OUT_tmp,Qj_OUT_tmp,opcode_tmp ,Rob_ID_tmp,rob_dest_tmp : STD_LOGIC_VECTOR (4 downto 0);
+SIGNAL  MC_Res_tmp, CDB_V_tmp,rk_v_tmp, rj_v_tmp ,RF_VAL_tmp,rob_vk_tmp,rob_vj_tmp,rob_value_tmp,pc_tmp  :STD_LOGIC_VECTOR (31 downto 0);
+SIGNAL  Rj_addr_tmp,rs_id_tmp,QK_OUT_tmp,Qj_OUT_tmp,opcode_tmp ,Rob_ID_tmp,rob_dest_tmp,rob_qk_tmp,rob_qj_tmp,Rf_dest_tmp : STD_LOGIC_VECTOR (4 downto 0);
 signal   MC_tag_tmp,CDB_Q_tmp,R_dest_tmp,Rk_addr_tmp : STD_LOGIC_VECTOR (4 downto 0);
          
 SIGNAL  poke_tmp, grand_tmp  : STD_LOGIC_VECTOR (1 downto 0);
@@ -200,7 +200,7 @@ RF_Unit: RF
 Port Map(
          CLK     =>clk,
          RST     =>reset    ,
-         ROB_R_Dest  =>R_dest_tmp ,
+         ROB_R_Dest  =>Rf_dest_tmp ,
          Rk_addr =>Rk_addr_tmp,
          Rj_addr =>Rj_addr_tmp,        
          RS_ID   =>rs_id_tmp  ,  
@@ -236,7 +236,7 @@ Port Map(
          
          
         rob_en      =>rob_en_tmp,
-        rf_dest_out =>R_dest_tmp,
+        rf_dest_out =>Rf_dest_tmp,
         rf_val_out  =>RF_VAL_tmp ,           
         ID_out    =>RS_ID_tmp   ,
         Poke_out_A=>poke_tmp(1) ,

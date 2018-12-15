@@ -11,14 +11,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="158600001fs"></ZoomEndTime>
-      <Cursor1Time time="65000000fs"></Cursor1Time>
+      <ZoomEndTime time="196213597fs"></ZoomEndTime>
+      <Cursor1Time time="55000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="158"></NameColumnWidth>
-      <ValueColumnWidth column_width="238"></ValueColumnWidth>
+      <ValueColumnWidth column_width="234"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="60" />
+   <WVObjectSize size="72" />
    <wvobject fp_name="/tb_Tomatulo/CLK" type="logic">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -74,10 +74,6 @@
    <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/RS_A/Free_out" type="array">
       <obj_property name="ElementShortName">Free_out[2:0]</obj_property>
       <obj_property name="ObjectShortName">Free_out[2:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_Tomatulo/dut/Issue_Unit/RS_FREE" type="logic">
-      <obj_property name="ElementShortName">RS_FREE</obj_property>
-      <obj_property name="ObjectShortName">RS_FREE</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/Free_A" type="logic">
       <obj_property name="ElementShortName">Free_A</obj_property>
@@ -258,5 +254,57 @@
    <wvobject fp_name="/tb_Tomatulo/dut/CDB_Unit/CDB_Q_OUT" type="array">
       <obj_property name="ElementShortName">CDB_Q_OUT[4:0]</obj_property>
       <obj_property name="ObjectShortName">CDB_Q_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/ID_RS1_OUT_TMP" type="array">
+      <obj_property name="ElementShortName">ID_RS1_OUT_TMP[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_RS1_OUT_TMP[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/ID_RS2_OUT_TMP" type="array">
+      <obj_property name="ElementShortName">ID_RS2_OUT_TMP[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_RS2_OUT_TMP[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/ID_RS3_OUT_TMP" type="array">
+      <obj_property name="ElementShortName">ID_RS3_OUT_TMP[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_RS3_OUT_TMP[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/OpCode" type="array">
+      <obj_property name="ElementShortName">OpCode[4:0]</obj_property>
+      <obj_property name="ObjectShortName">OpCode[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/RS_A/OpCode_RS1_OUT" type="array">
+      <obj_property name="ElementShortName">OpCode_RS1_OUT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">OpCode_RS1_OUT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/MC_Unit/MC_RS_FU_A_Unit/RS_A/EN_RS1" type="array">
+      <obj_property name="ElementShortName">EN_RS1[2:0]</obj_property>
+      <obj_property name="ObjectShortName">EN_RS1[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/ROB_Unit/ROB1_DEST" type="array">
+      <obj_property name="ElementShortName">ROB1_DEST[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ROB1_DEST[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/ROB_Unit/En" type="logic">
+      <obj_property name="ElementShortName">En</obj_property>
+      <obj_property name="ObjectShortName">En</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/ROB_Unit/top_s" type="array">
+      <obj_property name="ElementShortName">top_s[4:0]</obj_property>
+      <obj_property name="ObjectShortName">top_s[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/ROB_Unit/R_dest" type="array">
+      <obj_property name="ElementShortName">R_dest[4:0]</obj_property>
+      <obj_property name="ObjectShortName">R_dest[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/ROB_Unit/Rob_ID" type="array">
+      <obj_property name="ElementShortName">Rob_ID[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Rob_ID[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/ROB_Unit/Qk" type="array">
+      <obj_property name="ElementShortName">Qk[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Qk[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Tomatulo/dut/ROB_Unit/Qj" type="array">
+      <obj_property name="ElementShortName">Qj[4:0]</obj_property>
+      <obj_property name="ObjectShortName">Qj[4:0]</obj_property>
    </wvobject>
 </wave_config>

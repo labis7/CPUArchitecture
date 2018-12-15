@@ -1,7 +1,7 @@
-Running: xsim.dir/tb_Tomatulo_behav/xsimk.exe -simmode gui -wdb tb_Tomatulo_behav.wdb -simrunnum 0 -socket 2711
+Running: xsim.dir/tb_Tomatulo_behav/xsimk.exe -simmode gui -wdb tb_Tomatulo_behav.wdb -simrunnum 0 -socket 10652
 Design successfully loaded
-Design Loading Memory Usage: 5112 KB (Peak: 5112 KB)
-Design Loading CPU Usage: 15 ms
+Design Loading Memory Usage: 5108 KB (Peak: 5108 KB)
+Design Loading CPU Usage: 46 ms
 Simulation completed
-Simulation Memory Usage: 5828 KB (Peak: 5828 KB)
-Simulation CPU Usage: 15 ms
+Simulation Memory Usage: 5916 KB (Peak: 5916 KB)
+Simulation CPU Usage: 46 ms
