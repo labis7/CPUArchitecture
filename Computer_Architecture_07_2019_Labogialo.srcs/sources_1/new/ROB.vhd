@@ -187,7 +187,7 @@ end if;         --(END_IF TOU CLOCK)
     --    top := std_logic_vector(to_unsigned( ((to_integer(unsigned(top))) mod 30) , 5 ));
     --end if;
         
-        Rob_ID <= top + "00001";   --- e3odos tou ROB, gia na to parei 
+        Rob_ID <=std_logic_vector(to_unsigned( ((to_integer(unsigned(top + "00001"))) mod 30) , 5 )) ;   --- e3odos tou ROB, gia na to parei o RS (mesw tou MC)
         
 ---------------------------------------------------------------------------------------------------------------
 ----------------------------------------Distribute value of CDB where needed----------------------------------- 

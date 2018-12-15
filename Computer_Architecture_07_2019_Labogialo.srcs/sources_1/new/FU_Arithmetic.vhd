@@ -123,8 +123,8 @@ tag_out <= tag3_tmp;
 			 
 A_alu : process(op,tag_in,res0_tmp,tag1_tmp,tag2_tmp,tag3_tmp,clk,grand,EN)
 variable full : std_logic;
-begin
-if (((tag1_tmp="01001")or(tag1_tmp="01010")or(tag1_tmp="01011")) and ((tag2_tmp="01001")or(tag2_tmp="01010")or(tag2_tmp="01011")) and ((tag3_tmp="01001")or(tag3_tmp="01010")or(tag3_tmp="01011")) AND(grand='0')) then full:='1';
+begin--((tag1_tmp="01001")or(tag1_tmp="01010")or(tag1_tmp="01011")) and ((tag2_tmp="01001")or(tag2_tmp="01010")or(tag2_tmp="01011")) and ((tag3_tmp="01001")or(tag3_tmp="01010")or(tag3_tmp="01011"))
+if (((tag1_tmp/="11111")and(tag2_tmp/="11111")AND(tag3_tmp/="11111")and((tag1_tmp(0)='0')OR(tag1_tmp(0)='1'))And((tag2_tmp(0)='0')OR(tag2_tmp(0)='1'))AND((tag3_tmp(0)='0')OR(tag3_tmp(0)='1')) ) AND(grand='0')) then full:='1';
     else full:= '0' ;
     end if;
 --if (rising_edge(clk)) then
@@ -132,7 +132,7 @@ if (((tag1_tmp="01001")or(tag1_tmp="01010")or(tag1_tmp="01011")) and ((tag2_tmp=
    -- if(((tag1_tmp/="11111")AND(tag2_tmp/="11111")AND(tag3_tmp/="11111"))AND(grand='0')) then full<='1';
     
     -----------------------------spasimo arxikhs sunthikhs
-    if((tag1_tmp/="11111")AND(tag1_tmp/="01001")AND(tag1_tmp/="01010")AND(tag1_tmp/="01011")) then		en1_tmp<='1';
+    if((tag1_tmp(0)/='0')AND(tag1_tmp(0)/='1')) then		en1_tmp<='1';
     
     -----------------------------
     else 
@@ -168,8 +168,8 @@ if (((tag1_tmp="01001")or(tag1_tmp="01010")or(tag1_tmp="01011")) and ((tag2_tmp=
             else poke_A<='0';
             end if;
     end if;
-    if((tag3_tmp/="11111")AND(tag3_tmp/="01001")AND(tag3_tmp/="01010")AND(tag3_tmp/="01011")) then		en3_tmp<='1'; end if;
-    if((tag2_tmp/="11111")AND(tag2_tmp/="01001")AND(tag2_tmp/="01010")AND(tag2_tmp/="01011")) then		en2_tmp<='1'; end if ;
+    if((tag3_tmp(0)/='0')AND(tag3_tmp(0)/='1')) then		en3_tmp<='1'; end if;
+    if((tag2_tmp(0)/='0')AND(tag2_tmp(0)/='1')) then		en2_tmp<='1'; end if ;
 --else null;
 --end if;
 full_out<=full;

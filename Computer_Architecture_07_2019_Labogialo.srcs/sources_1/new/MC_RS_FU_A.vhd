@@ -233,11 +233,11 @@ end if;
 -------------------------------------------------------------------
 ----------DROMOLOGISH EISODWN THS FU
 -------------------------------------------------------------------
-IF ((rb_tmp(2)='1')and(opcode_rs1_out_tmp(4)='0')) THEN --tote RS1 etoimo gia na mpei sthn ALU, kai 1 prwto bit mas leei oti einai se xrhsh sto sugkekrimeno RS slot
+IF ((rb_tmp(2)='1')and(tag_1_tmp/=ID_RS1_OUT_TMP)and(tag_2_tmp/=ID_RS1_OUT_TMP)and(TAG_A_tmp/=ID_RS1_OUT_TMP)and(opcode_rs1_out_tmp(4)='0')) THEN --tote RS1 etoimo gia na mpei sthn ALU, kai 1 prwto bit mas leei oti einai se xrhsh sto sugkekrimeno RS slot
     if(full_fu_tmp='0') then --simainei oti sto epomeno clock tha exei mpei sthn FU
         EN_FU_TMP<='1'; 
         TAG_IN_TMP<=ID_RS1_OUT_TMP;
-        --free_out_tmp(2):='1';   --  molis bgei apo fu tha to eleutherwsoume(updated)
+        free_out_tmp(2):='1';   --  molis bgei apo fu tha to eleutherwsoume(updated)
     ELSE 
         EN_FU_TMP<='0'; 
         TAG_IN_TMP<="11111";
@@ -245,11 +245,11 @@ IF ((rb_tmp(2)='1')and(opcode_rs1_out_tmp(4)='0')) THEN --tote RS1 etoimo gia na
     Vk_FU_TMP <=  Vk_RS1_OUT_TMP;
     Vj_FU_TMP <=  Vj_RS1_OUT_TMP;
     Op_tmp    <= OpCode_RS1_OUT_TMP(1 downto 0);
-elsIF ((rb_tmp(1)='1')and(opcode_rs2_out_tmp(4)='0')) THEN
+elsIF  ((rb_tmp(1)='1')and(tag_1_tmp/=ID_RS2_OUT_TMP)and(tag_2_tmp/=ID_RS2_OUT_TMP)and(TAG_A_tmp/=ID_RS2_OUT_TMP)and(opcode_rs2_out_tmp(4)='0')) THEN
     if(full_fu_tmp='0') then 
         EN_FU_TMP<='1'; 
         TAG_IN_TMP<=ID_RS2_OUT_TMP;
-        --free_out_tmp(1):='1';
+        free_out_tmp(1):='1';
     ELSE 
         EN_FU_TMP<='0'; 
         TAG_IN_TMP<="11111";
@@ -257,11 +257,11 @@ elsIF ((rb_tmp(1)='1')and(opcode_rs2_out_tmp(4)='0')) THEN
     Vk_FU_TMP <= Vk_RS2_OUT_TMP ;
     Vj_FU_TMP <= Vj_RS2_OUT_TMP ; 
     Op_tmp    <= OpCode_RS2_OUT_TMP(1 downto 0);
-elsIF ((rb_tmp(0)='1')and(opcode_rs3_out_tmp(4)='0')) THEN 
+elsIF  ((rb_tmp(0)='1')and(tag_1_tmp/=ID_RS3_OUT_TMP)and(tag_2_tmp/=ID_RS3_OUT_TMP)and(TAG_A_tmp/=ID_RS3_OUT_TMP)and(opcode_rs3_out_tmp(4)='0')) THEN 
     if(full_fu_tmp='0') then 
         EN_FU_TMP<='1'; 
         TAG_IN_TMP<=ID_RS3_OUT_TMP;
-        --free_out_tmp(0):='1';
+        free_out_tmp(0):='1';
     ELSE 
         EN_FU_TMP<='0'; 
         TAG_IN_TMP<="11111";
@@ -282,14 +282,14 @@ END IF;
 ---------------------------------------------
 -- elexgos gia to pote h entolh bgike apo fu, wste na eleutherwthei ( NA ALLAXTEI !!! NA PAI3OUME ME TA ORIA)
 ---------------------------------------------
-IF((ID_RS1_OUT_TMP = CDB_Q_TMP)and(ID_RS1_OUT_TMP(3)='1')) THEN 
+IF((ID_RS1_OUT_TMP = CDB_Q_TMP)and((ID_RS1_OUT_TMP(3)='1')OR(ID_RS1_OUT_TMP(3)='0'))) THEN 
     free_out_tmp(2):='1';
-elsif ((ID_RS2_OUT_TMP = CDB_Q_TMP)and(ID_RS2_OUT_TMP(3)='1')) then
-    free_out_tmp(1):='1';
-elsif ((ID_RS3_OUT_TMP = CDB_Q_TMP)and(ID_RS3_OUT_TMP(3)='1')) then
-    free_out_tmp(0):='1';
-else
-    null;
+--elsif ((ID_RS2_OUT_TMP = CDB_Q_TMP)and(ID_RS2_OUT_TMP(3)='1')) then
+--    free_out_tmp(1):='1';
+--elsif ((ID_RS3_OUT_TMP = CDB_Q_TMP)and(ID_RS3_OUT_TMP(3)='1')) then
+--    free_out_tmp(0):='1';
+--else
+--    null;
 end if;
 
 
@@ -341,7 +341,7 @@ if(stop='1') then
     en_rs1_tmp<="000";
     en_rs2_tmp<="000";
     en_rs3_tmp<="000";
-    IF((opcode_rs1_in_tmp(4)='0')and(free_out_tmp(2)='1')) then 
+    IF((opcode_rs1_OUT_tmp(4)='0')and(free_out_tmp(2)='1')) then 
         opcode_rs1_in_tmp(4)<='1';
         en_rs1_tmp(2)<='1';
         en_rs1_tmp(1)<='0';
@@ -349,7 +349,7 @@ if(stop='1') then
     else
         en_rs1_tmp(2)<='0';
     end if;
-    IF((opcode_rs2_in_tmp(4)='0')and(free_out_tmp(1)='1')) then 
+    IF((opcode_rs2_OUT_tmp(4)='0')and(free_out_tmp(1)='1')) then 
         opcode_rs2_in_tmp(4)<='1';
         en_rs2_tmp(2)<='1';
         en_rs2_tmp(1)<='0';
@@ -357,7 +357,7 @@ if(stop='1') then
     else
         en_rs2_tmp(2)<='0';
     end if;
-    IF((opcode_rs3_in_tmp(4)='0')and(free_out_tmp(0)='1')) then 
+    IF((opcode_rs3_OUT_tmp(4)='0')and(free_out_tmp(0)='1')) then 
         opcode_rs3_in_tmp(4)<='1';
         en_rs3_tmp(2)<='1';
         en_rs3_tmp(1)<='0';
