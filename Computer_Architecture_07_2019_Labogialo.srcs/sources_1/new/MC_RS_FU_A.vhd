@@ -282,15 +282,15 @@ END IF;
 ---------------------------------------------
 -- elexgos gia to pote h entolh bgike apo fu, wste na eleutherwthei ( NA ALLAXTEI !!! NA PAI3OUME ME TA ORIA)
 ---------------------------------------------
-IF((ID_RS1_OUT_TMP = CDB_Q_TMP)and((ID_RS1_OUT_TMP(3)='1')OR(ID_RS1_OUT_TMP(3)='0'))) THEN 
-    free_out_tmp(2):='1';
+--IF((ID_RS1_OUT_TMP = CDB_Q_TMP)and((ID_RS1_OUT_TMP(3)='1')OR(ID_RS1_OUT_TMP(3)='0'))) THEN 
+--    free_out_tmp(2):='1';
 --elsif ((ID_RS2_OUT_TMP = CDB_Q_TMP)and(ID_RS2_OUT_TMP(3)='1')) then
 --    free_out_tmp(1):='1';
 --elsif ((ID_RS3_OUT_TMP = CDB_Q_TMP)and(ID_RS3_OUT_TMP(3)='1')) then
 --    free_out_tmp(0):='1';
 --else
 --    null;
-end if;
+--end if;
 
 
   
@@ -374,9 +374,7 @@ elsif (((free_out_tmp(2)/='0') or (opcode_rs1_out_tmp(4)/='0'))and((Qk_TMP(0)='0
     vj_rs1_in_tmp <= vj_tmp;
     qk_rs1_in_tmp <= qk_tmp;
     qj_rs1_in_tmp <= qj_tmp;
-    OPCODE_RS1_IN_TMP<=opcode_tmp;
-    --ID_A_OUT <= id_rs1_out_tmp;
-    --ID_ROB_RS
+    OPCODE_RS1_IN_TMP<=opcode_tmp;       
     en_rs1_tmp<="111";
     en_rs2_tmp<="000";
     en_rs3_tmp<="000";

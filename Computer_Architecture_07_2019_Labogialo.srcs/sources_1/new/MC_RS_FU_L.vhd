@@ -42,6 +42,7 @@ entity MC_RS_FU_L is
            CDB_Q     : in STD_LOGIC_VECTOR (4 downto 0);
            OpCode    : in STD_LOGIC_VECTOR (4 downto 0); --apo issue, me 5o bit nanai panta '0' (busy)
            Stop          : in STD_LOGIC;  
+           ID_ROB_RS : in  STD_LOGIC_VECTOR (4 downto 0);
       
            Poke_out_L: out STD_LOGIC;
            Res_L     : out STD_LOGIC_VECTOR (31 downto 0);
@@ -70,7 +71,7 @@ COMPONENT RS_Logical
            Vk_RS2_IN : in  STD_LOGIC_VECTOR (31 downto 0);
 		   Vj_RS1_IN : in  STD_LOGIC_VECTOR (31 downto 0);
            Vj_RS2_IN : in  STD_LOGIC_VECTOR (31 downto 0);
-			
+			ID_ROB_RS : in  STD_LOGIC_VECTOR (4 downto 0);
 			  
 			  
 		   Rb :   out  STD_LOGIC_VECTOR (1 downto 0);
@@ -164,7 +165,7 @@ Port Map(  CLK       => CLK ,
            Vk_RS2_IN   => Vk_RS2_IN_TMP ,
 		   Vj_RS1_IN   =>  Vj_RS1_IN_TMP ,  
            Vj_RS2_IN   => Vj_RS2_IN_TMP  ,  
-			 
+			ID_ROB_RS  =>ID_ROB_RS,  
 			 
 			 
 		   Rb         => RB_TMP , 
@@ -217,7 +218,7 @@ IF ((rb_tmp(1)='1')and(tag_1_tmp/=ID_RS1_OUT_TMP)and(TAG_L_tmp/=ID_RS1_OUT_TMP)a
     if(full_fu_tmp='0') then --simainei oti sto epomeno clock tha exei mpei sthn FU
         EN_FU_TMP<='1'; 
         TAG_IN_TMP<=ID_RS1_OUT_TMP;
-       -- free_out_tmp(1):='1';   -- tha to sundiazei o main microcontroller kai tha to lambanei uposin gia to pou tha grapsei(akoma kai an den exei kati neo,tha enhmerwsei to antistoixo RS --> free)
+        free_out_tmp(1):='1';   -- tha to sundiazei o main microcontroller kai tha to lambanei uposin gia to pou tha grapsei(akoma kai an den exei kati neo,tha enhmerwsei to antistoixo RS --> free)
     ELSE 
         EN_FU_TMP<='0'; 
         TAG_IN_TMP<="11111";
@@ -229,7 +230,7 @@ elsIF ((rb_tmp(0)='1')and(tag_1_tmp/=ID_RS2_OUT_TMP)and(TAG_L_tmp/=ID_RS2_OUT_TM
     if(full_fu_tmp='0') then 
         EN_FU_TMP<='1'; 
         TAG_IN_TMP<=ID_RS2_OUT_TMP;
-       -- free_out_tmp(0):='1';
+        free_out_tmp(0):='1';
     ELSE 
         EN_FU_TMP<='0'; 
         TAG_IN_TMP<="11111";
@@ -254,13 +255,13 @@ END IF;
 ---------------------------------------------
 -- elexgos gia to pote h entolh bgike apo fu, wste na eleutherwthei
 ---------------------------------------------
-IF((ID_RS1_OUT_TMP = CDB_Q_TMP)and(ID_RS1_OUT_TMP(3)='0')) THEN  --to AND EINAI GIA SPASIMO ARXIKHS KATASTASHS (TO 2 MSB BIT TOU ID THA EIMAI PANTA 0 -->LOGIKH MONADA)
-    free_out_tmp(1):='1';
-elsif ((ID_RS2_OUT_TMP = CDB_Q_TMP)and(ID_RS2_OUT_TMP(3)='0')) then
-    free_out_tmp(0):='1';
-else
-    null;
-end if;
+--IF((ID_RS1_OUT_TMP = CDB_Q_TMP)and(ID_RS1_OUT_TMP(3)='0')) THEN  --to AND EINAI GIA SPASIMO ARXIKHS KATASTASHS (TO 2 MSB BIT TOU ID THA EIMAI PANTA 0 -->LOGIKH MONADA)
+--    free_out_tmp(1):='1';
+--elsif ((ID_RS2_OUT_TMP = CDB_Q_TMP)and(ID_RS2_OUT_TMP(3)='0')) then
+--    free_out_tmp(0):='1';
+--else
+--    null;
+--end if;
 
 ---------------------------------------------
 ---enhmerwsh ths katastashs(gia na 3eroume KAI sto epomeno kuklo, sumfwna me to ti uphrxe kai ti alla3e twra.oxi twra....TWRA!)
@@ -319,8 +320,8 @@ if(stop='1') then
 
 
 
-elsif (((free_out_tmp(1)/='0') or (opcode_rs1_out_tmp(4)/='0')) and (Qk_tmp="00100" or Qk_tmp="00101" or Qk_tmp="01001" or Qk_tmp="01010" or Qk_tmp="01011" or Qk_tmp="11111")
-                                                             and (Qj_tmp="00100" or Qj_tmp="00101" or Qj_tmp="01001" or Qj_tmp="01010" or Qj_tmp="01011" or Qj_tmp="11111") ) then   
+elsif (((free_out_tmp(1)/='0') or (opcode_rs1_out_tmp(4)/='0')) and ((Qk_TMP(0)='0' or Qk_TMP(0)='1'))and((Qj_TMP(0)='0' or Qj_TMP(0)='1'))) then--(Qk_tmp="00100" or Qk_tmp="00101" or Qk_tmp="01001" or Qk_tmp="01010" or Qk_tmp="01011" or Qk_tmp="11111")and (Qj_tmp="00100" or Qj_tmp="00101" or Qj_tmp="01001" or Qj_tmp="01010" or Qj_tmp="01011" or Qj_tmp="11111") ) then   
+                                                                                                                                                                                                        
     free_out_tmp(1)      :='0'; --to akurwnw edw,
     opcode_rs1_in_tmp(4)<='0'; 
     vk_rs1_in_tmp  <= vk_tmp;
@@ -328,11 +329,10 @@ elsif (((free_out_tmp(1)/='0') or (opcode_rs1_out_tmp(4)/='0')) and (Qk_tmp="001
     qk_rs1_in_tmp <= qk_tmp;
     qj_rs1_in_tmp <= qj_tmp;
     OPCODE_RS1_IN_TMP<=opcode_tmp;
-    ID_L_OUT <= id_rs1_out_tmp;
+    --ID_L_OUT <= id_rs1_out_tmp;
     en_rs1_tmp<="111";
     en_rs2_tmp<="000";
-elsif (((free_out_tmp(0)/='0')or (opcode_rs2_out_tmp(4)/='0')) and (Qk_tmp="00100" or Qk_tmp="00101" or Qk_tmp="01001" or Qk_tmp="01010" or Qk_tmp="01011" or Qk_tmp="11111")
-                                                              and (Qk_tmp="00100" or Qk_tmp="00101" or Qj_tmp="01001" or Qj_tmp="01010" or Qj_tmp="01011" or Qj_tmp="11111") ) then   
+elsif (((free_out_tmp(0)/='0')or (opcode_rs2_out_tmp(4)/='0'))ANd((Qk_TMP(0)='0' or Qk_TMP(0)='1'))and((Qj_TMP(0)='0' or Qj_TMP(0)='1'))) then  
     free_out_tmp(0)      :='0'; --to akurwnw edw,
     opcode_rs2_in_tmp(4)<='0'; 
     vk_rs2_in_tmp  <= vk_tmp;
@@ -340,7 +340,7 @@ elsif (((free_out_tmp(0)/='0')or (opcode_rs2_out_tmp(4)/='0')) and (Qk_tmp="0010
     qk_rs2_in_tmp <= qk_tmp;
     qj_rs2_in_tmp <= qj_tmp;
     OPCODE_RS2_IN_TMP<=opcode_tmp;
-    ID_L_OUT <= id_rs2_out_tmp;
+    --ID_L_OUT <= id_rs2_out_tmp;
     en_rs1_tmp<="000";
     en_rs2_tmp<="111";
 else 
@@ -354,7 +354,7 @@ end if;
 --Forwarding, CDB --> RS
 ---------------------------------------------------------------
 
-if (CDB_Q_TMP="00100" or CDB_Q_TMP="00101" or CDB_Q_TMP="01001" or CDB_Q_TMP="01010" or CDB_Q_TMP="01011") THEN
+if ((CDB_Q_TMP(0)='0' or CDB_Q_TMP(0)='1')and(CDB_Q_TMP /= "11111")) THEN
 --IF(CDB_Q_TMP = "01001" or CDB_Q_TMP = "01010" or CDB_Q_TMP = "01011") THEN          
     IF(Qk_rs1_out_tmp = CDB_Q_TMP) THEN  --may need free bit also
         EN_RS1_TMP(1)    <= '1';
@@ -391,28 +391,28 @@ end if;
  --   periptwsh pou, h kainourgia entolh THA perimenei ena Qk, alla EKEINH thn stigmh to exei bgalei o cdb 
  --------------------------------------------------------
 --RS1
-if((qk_rs1_in_tmp = CDB_Q_TMP)and(CDB_Q_TMP/="11111")and(en_rs1_tmp="111"))  then 
-    Vk_RS1_IN_TMP <= CDB_V_TMP;      
-    Qk_RS1_IN_TMP <= "11111";
- else null;
- end if;
- if ((qj_rs1_in_tmp = CDB_Q_TMP)and(CDB_Q_TMP/="11111")and(en_rs1_tmp="111"))  then 
-        Vj_RS1_IN_TMP <= CDB_V_TMP;      
-        Qj_RS1_IN_TMP <= "11111"; 
-else null;
-end if;
+--if((qk_rs1_in_tmp = CDB_Q_TMP)and(CDB_Q_TMP/="11111")and(en_rs1_tmp="111"))  then 
+--    Vk_RS1_IN_TMP <= CDB_V_TMP;      
+--    Qk_RS1_IN_TMP <= "11111";
+-- else null;
+-- end if;
+-- if ((qj_rs1_in_tmp = CDB_Q_TMP)and(CDB_Q_TMP/="11111")and(en_rs1_tmp="111"))  then 
+--        Vj_RS1_IN_TMP <= CDB_V_TMP;      
+--        Qj_RS1_IN_TMP <= "11111"; 
+--else null;
+--end if;
 
---RS2
-if((qk_rs2_in_tmp = CDB_Q_TMP)and(CDB_Q_TMP/="11111")and(en_rs2_tmp="111"))  then 
-    Vk_RS2_IN_TMP <= CDB_V_TMP;      
-    Qk_RS2_IN_TMP <= "11111";
- else null;
- end if;
- if ((qj_rs2_in_tmp = CDB_Q_TMP)and(CDB_Q_TMP/="11111")and(en_rs2_tmp="111"))  then 
-     Vj_RS2_IN_TMP <= CDB_V_TMP;      
-     Qj_RS2_IN_TMP <= "11111"; 
-else null;
-end if;
+----RS2
+--if((qk_rs2_in_tmp = CDB_Q_TMP)and(CDB_Q_TMP/="11111")and(en_rs2_tmp="111"))  then 
+--    Vk_RS2_IN_TMP <= CDB_V_TMP;      
+--    Qk_RS2_IN_TMP <= "11111";
+-- else null;
+-- end if;
+-- if ((qj_rs2_in_tmp = CDB_Q_TMP)and(CDB_Q_TMP/="11111")and(en_rs2_tmp="111"))  then 
+--     Vj_RS2_IN_TMP <= CDB_V_TMP;      
+--     Qj_RS2_IN_TMP <= "11111"; 
+--else null;
+--end if;
 
 ----------------------------------------------------------
 -----elegxos gia th RS , ama exei keno xwro

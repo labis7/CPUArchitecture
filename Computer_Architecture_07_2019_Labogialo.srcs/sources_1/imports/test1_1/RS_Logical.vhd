@@ -48,7 +48,7 @@ entity RS_Logical is
            Vk_RS2_IN : in  STD_LOGIC_VECTOR (31 downto 0);
 		   Vj_RS1_IN : in  STD_LOGIC_VECTOR (31 downto 0);
            Vj_RS2_IN : in  STD_LOGIC_VECTOR (31 downto 0);
-			  
+			ID_ROB_RS: in  STD_LOGIC_VECTOR (4 downto 0);   
 			  
 			  
 		   Rb :   out  STD_LOGIC_VECTOR (1 downto 0);
@@ -89,6 +89,7 @@ COMPONENT RS_part
            Vj_in 		: in  STD_LOGIC_VECTOR (31 downto 0);
 		   Qk_in 		: in  STD_LOGIC_VECTOR (4 downto 0);
            Qj_in 		: in  STD_LOGIC_VECTOR (4 downto 0);
+		   	  
 			  
            Qk_out 	: out  STD_LOGIC_VECTOR (4 downto 0);
            Qj_out 	: out  STD_LOGIC_VECTOR (4 downto 0);
@@ -115,7 +116,7 @@ Port Map(CLK			=>CLK	        ,
          Vj_out 		=>Vj_RS1_OUT 	 ,
 		 Qk_out 		=>Qk_RS1_tmp 	 ,
          Qj_out 		=>Qj_RS1_tmp 	 ,
-         ID_in  		=>"00100"    	 ,													
+         ID_in  		=>ID_ROB_RS    	 ,													
          ID_out  		=> ID_RS1_OUT	 ,
          OpCode_out     => OpCode_RS1_OUT_TMP); 
          
@@ -136,7 +137,7 @@ Port Map(CLK			=>CLK	       ,
          Vj_out 		=>Vj_RS2_OUT 	,
 		 Qk_out 		=>Qk_RS2_tmp 	,
          Qj_out 		=>Qj_RS2_tmp 	,
-         ID_in  		=>"00101"    	,
+         ID_in  		=>ID_ROB_RS   	,
          ID_out  		=> ID_RS2_OUT	,
          OpCode_out     => OpCode_RS2_OUT_TMP ); 
  

@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Sat Dec 15 22:52:24 2018">
+<application name="pa" timeStamp="Sun Dec 16 12:51:07 2018">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="0f4e4c72bae148998af2c5aa3768b7f2" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -80,7 +80,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="DefineModulesDialog_DEFINE_MODULES_AND_SPECIFY_IO_PORTS" value="727" type="GuiHandlerData"/>
 <property name="DefineModulesDialog_ENTITY_NAME" value="2" type="GuiHandlerData"/>
 <property name="ExpRunTreePanel_EXP_RUN_TREE_TABLE" value="13" type="GuiHandlerData"/>
-<property name="FileSetPanel_FILE_SET_PANEL_TREE" value="2670" type="GuiHandlerData"/>
+<property name="FileSetPanel_FILE_SET_PANEL_TREE" value="2697" type="GuiHandlerData"/>
 <property name="FileSetPanel_MESSAGES" value="2" type="GuiHandlerData"/>
 <property name="FloatingTopDialog_IGNORE_AND_CONTINUE_WITH_INVALID_TOP" value="1" type="GuiHandlerData"/>
 <property name="FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE" value="174" type="GuiHandlerData"/>
@@ -94,7 +94,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="HCodeEditor_DIFF_WITH" value="17" type="GuiHandlerData"/>
 <property name="HCodeEditor_SEARCH_TEXT_COMBO_BOX" value="84" type="GuiHandlerData"/>
 <property name="HInputHandler_DUPLICATE_SELECTION" value="1" type="GuiHandlerData"/>
-<property name="HInputHandler_TOGGLE_LINE_COMMENTS" value="56" type="GuiHandlerData"/>
+<property name="HInputHandler_TOGGLE_LINE_COMMENTS" value="59" type="GuiHandlerData"/>
 <property name="HPopupTitle_CLOSE" value="2" type="GuiHandlerData"/>
 <property name="HShortcutEditor_ADD" value="1" type="GuiHandlerData"/>
 <property name="HShortcutEditor_REMOVE" value="1" type="GuiHandlerData"/>
@@ -154,8 +154,8 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="PACommandNames_SRC_REPLACE_FILE" value="3" type="GuiHandlerData"/>
 <property name="PACommandNames_TCL_STORE" value="2" type="GuiHandlerData"/>
 <property name="PACommandNames_TOGGLE_VIEW_NAV" value="9" type="GuiHandlerData"/>
-<property name="PAViews_CODE" value="268" type="GuiHandlerData"/>
-<property name="PAViews_PROJECT_SUMMARY" value="60" type="GuiHandlerData"/>
+<property name="PAViews_CODE" value="273" type="GuiHandlerData"/>
+<property name="PAViews_PROJECT_SUMMARY" value="61" type="GuiHandlerData"/>
 <property name="PlanAheadTab_SHOW_FLOW_NAVIGATOR" value="9" type="GuiHandlerData"/>
 <property name="ProgressDialog_CANCEL" value="3" type="GuiHandlerData"/>
 <property name="ProjectNameChooser_CHOOSE_PROJECT_LOCATION" value="3" type="GuiHandlerData"/>
@@ -203,7 +203,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="SrcMenu_IP_HIERARCHY" value="137" type="GuiHandlerData"/>
 <property name="SrcMenu_OPEN_SELECTED_SOURCE_FILES" value="3" type="GuiHandlerData"/>
 <property name="SrcMenu_REFRESH_HIERARCHY" value="2" type="GuiHandlerData"/>
-<property name="SyntheticaGettingStartedView_RECENT_PROJECTS" value="56" type="GuiHandlerData"/>
+<property name="SyntheticaGettingStartedView_RECENT_PROJECTS" value="57" type="GuiHandlerData"/>
 <property name="TaskBanner_CLOSE" value="58" type="GuiHandlerData"/>
 <property name="TclAppDetailPanel_CREATE_CUSTOM_COMMAND" value="3" type="GuiHandlerData"/>
 <property name="TclConsoleView_PAUSE_AUTOMATIC_SCROLLING" value="1" type="GuiHandlerData"/>
@@ -222,9 +222,9 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="WaveformView_SWAP_CURSORS" value="1" type="GuiHandlerData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="70" type="GuiMode"/>
+<property name="GuiMode" value="71" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="66" type="TclMode"/>
+<property name="TclMode" value="67" type="TclMode"/>
 </item>
 </section>
 </application>

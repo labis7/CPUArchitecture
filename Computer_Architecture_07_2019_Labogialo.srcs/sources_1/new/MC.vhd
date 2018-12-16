@@ -103,7 +103,7 @@ Component MC_RS_FU_L
            CDB_Q     : in STD_LOGIC_VECTOR (4 downto 0);
            OpCode    : in STD_LOGIC_VECTOR (4 downto 0); --apo issue, me 5o bit nanai panta '0' (busy)
            Stop          : in STD_LOGIC;
-      
+           ID_ROB_RS: in  STD_LOGIC_VECTOR (4 downto 0);
       
            Poke_out_L: out STD_LOGIC;
            Res_L     : out STD_LOGIC_VECTOR (31 downto 0);
@@ -146,6 +146,7 @@ Port Map(clk       =>clk,
          CDB_Q     =>CDB_Q_tmp,
          OpCode    =>Opcode_L_tmp,
          stop      =>stop_l_tmp, 
+         ID_ROB_RS =>ID_ROB_RS_TMP,
                    
          Poke_out_L=>Poke_out_L,
          Res_L     =>result_L_tmp,
