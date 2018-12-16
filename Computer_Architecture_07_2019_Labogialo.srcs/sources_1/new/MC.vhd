@@ -206,7 +206,7 @@ if((rob_dest = cdb_q_tmp)) then  -- perpitwsh pou rob1_dest = cdb_q (dil. rob1 n
 elsif(rob_status = '1') then --ready to rob1, ara bazoume to value tou sthn rf gia egraffh
     rf_dest_out <= rob_dest;
     rf_val_out   <= rob_value;
-elsif(rob_status = '0') then 
+elsif(rob_status /= '1') then --bathu
     rf_dest_out<= "00000";    --gia na mhn grapsei tpt, perimenoume
 else null;
 end if;
@@ -254,7 +254,7 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
        
     else
         ------------DISABLE TOU ROB 
-        rob_en<='0';  
+        --rob_en<='0';  
         ----------------
         free_a_out <= '0';
     end if; 
@@ -294,7 +294,7 @@ elsif((Opcode(3 downto 2) = "00")AND(stop_in='0')) then --an h entolh einai tupo
     else
         free_l_out <= '0';
         
-        rob_en<='0'; ----------DISABLE TOU ROB   (prosoxh na dw ton sugxronismo!!!)   
+       -- rob_en<='0'; ----------DISABLE TOU ROB   (prosoxh na dw ton sugxronismo!!!)   
     end if;
 else 
     rob_en<='0';

@@ -189,7 +189,7 @@ Qj_RS3_OUT <= Qj_RS3_tmp;
 
 free_out <= free_out_tmp;
 
-Ready_to_Run : process (clk,free_out_tmp)
+Ready_to_Run : process (clk,free_out_tmp,Qk_RS1_tmp,Qj_RS1_tmp)
 begin
 --if rising_edge(clk) then
 

@@ -1,0 +1,86 @@
+/*
+
+Xilinx Vivado v2018.2 (64-bit) [Major: 2018, Minor: 2]
+SW Build: 2258646 on Thu Jun 14 20:03:12 MDT 2018
+IP Build: 2256618 on Thu Jun 14 22:10:49 MDT 2018
+
+Process ID: 2940
+License: Customer
+
+Current time: 	Sun Dec 16 12:52:45 EET 2018
+Time zone: 	Eastern European Time (Europe/Athens)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 1920x1080
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 21 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	L:/Xilinx/Vivado/2018.2/tps/win64/jre
+Java executable location: 	L:/Xilinx/Vivado/2018.2/tps/win64/jre/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 2 GB
+
+
+User name: 	Labis
+User home directory: C:/Users/Labis
+User working directory: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: L:/Xilinx/Vivado
+HDI_APPROOT: L:/Xilinx/Vivado/2018.2
+RDI_DATADIR: L:/Xilinx/Vivado/2018.2/data
+RDI_BINDIR: L:/Xilinx/Vivado/2018.2/bin
+
+Vivado preferences file location: C:/Users/Labis/AppData/Roaming/Xilinx/Vivado/2018.2/vivado.xml
+Vivado preferences directory: C:/Users/Labis/AppData/Roaming/Xilinx/Vivado/2018.2/
+Vivado layouts directory: C:/Users/Labis/AppData/Roaming/Xilinx/Vivado/2018.2/layouts
+PlanAhead jar file location: 	L:/Xilinx/Vivado/2018.2/lib/classes/planAhead.jar
+Vivado log file location: 	L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/vivado.log
+Vivado journal file location: 	L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/vivado.jou
+Engine tmp dir: 	L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/.Xil/Vivado-2940-SuperStructure
+
+Xilinx Environment Variables
+----------------------------
+ANDROID_SDK_HOME: C:\Android
+XILINX: L:/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_DSP: L:/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_PLANAHEAD: L:/Xilinx/Vivado/2018.2
+XILINX_SDK: L:/Xilinx/SDK/2018.2
+XILINX_VIVADO: L:/Xilinx/Vivado/2018.2
+XILINX_VIVADO_HLS: L:/Xilinx/Vivado/2018.2
+
+
+GUI allocated memory:	192 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 549 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 54 MB (+53926kb) [00:00:06]
+// [Engine Memory]: 501 MB (+374041kb) [00:00:06]
+// bx (ck):  Open Project : addNotify
+// Opening Vivado Project: L:\VidadoLabs\Computer_Architecture_07_2019_Labogialo\Computer_Architecture_07_2019_Labogialo.xpr. Version: Vivado v2018.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// Tcl Message: open_project L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.xpr 
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'L:/Xilinx/Vivado/2018.2/data/ip'. 

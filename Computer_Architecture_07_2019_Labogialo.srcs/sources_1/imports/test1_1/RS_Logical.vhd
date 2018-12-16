@@ -154,7 +154,7 @@ Qj_RS2_OUT <= Qj_RS2_tmp;
 free_out <= free_out_tmp;
 
 
-Ready_to_Run : process (clk,free_out_tmp)
+Ready_to_Run : process (clk,free_out_tmp,Qk_RS1_tmp,Qj_RS1_tmp)
 begin
 
     if ((Qk_RS1_tmp="11111" AND Qj_RS1_tmp="11111")  AND (free_out_tmp(1)='0'))  then Rb(1)<='1';

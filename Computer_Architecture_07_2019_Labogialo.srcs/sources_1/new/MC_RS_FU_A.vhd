@@ -217,7 +217,7 @@ Qj_tmp    <= Qj;
 opcode_tmp<= opcode;
 ---------------------------------------shmatadh waihifld
 
-microcontroller : process(clk,full_fu_tmp,rb_tmp,cdb_q,stop,opcode,Vk,Vj,Qk,Qj)
+microcontroller : process(clk,full_fu_tmp,rb_tmp,cdb_q,stop,opcode,Vk_tmp,Vj,Qk_tmp,Qj)
 variable free_out_tmp : std_logic_vector(2 downto 0);
 begin
 
@@ -370,11 +370,11 @@ elsif (((free_out_tmp(2)/='0') or (opcode_rs1_out_tmp(4)/='0'))and((Qk_TMP(0)='0
                                                             
     free_out_tmp(2)      :='0'; --to akurwnw edw,
     opcode_rs1_in_tmp(4)<='0'; 
-    vk_rs1_in_tmp  <= vk_tmp;
-    vj_rs1_in_tmp <= vj_tmp;
-    qk_rs1_in_tmp <= qk_tmp;
-    qj_rs1_in_tmp <= qj_tmp;
-    OPCODE_RS1_IN_TMP<=opcode_tmp;       
+    vk_rs1_in_tmp  <= vk;
+    vj_rs1_in_tmp <= vj;
+    qk_rs1_in_tmp <= qk;
+    qj_rs1_in_tmp <= qj;
+    OPCODE_RS1_IN_TMP<=opcode;       
     en_rs1_tmp<="111";
     en_rs2_tmp<="000";
     en_rs3_tmp<="000";
@@ -382,11 +382,11 @@ elsif (((free_out_tmp(2)/='0') or (opcode_rs1_out_tmp(4)/='0'))and((Qk_TMP(0)='0
 elsif (((free_out_tmp(1)/='0')or (opcode_rs2_out_tmp(4)/='0'))and((Qk_TMP(0)='0' or Qk_TMP(0)='1'))and((Qj_TMP(0)='0' or Qj_TMP(0)='1'))) then  
     free_out_tmp(1)      :='0'; --to akurwnw edw,
     opcode_rs2_in_tmp(4)<='0'; 
-    vk_rs2_in_tmp  <= vk_tmp;
-    vj_rs2_in_tmp <= vj_tmp;
-    qk_rs2_in_tmp <= qk_tmp;
-    qj_rs2_in_tmp <= qj_tmp;
-    OPCODE_RS2_IN_TMP<=opcode_tmp;
+    vk_rs2_in_tmp  <= vk;
+    vj_rs2_in_tmp <= vj;
+    qk_rs2_in_tmp <= qk;
+    qj_rs2_in_tmp <= qj;
+    OPCODE_RS2_IN_TMP<=opcode;
     --ID_A_OUT <= id_rs2_out_tmp;
     en_rs1_tmp<="000";
     en_rs2_tmp<="111";
@@ -395,11 +395,11 @@ elsif (((free_out_tmp(1)/='0')or (opcode_rs2_out_tmp(4)/='0'))and((Qk_TMP(0)='0'
  elsif (((free_out_tmp(0)/='0')or (opcode_rs3_out_tmp(4)/='0'))and((Qk_TMP(0)='0' or Qk_TMP(0)='1'))and((Qj_TMP(0)='0' or Qj_TMP(0)='1'))) then  
     free_out_tmp(0)      :='0'; --to akurwnw edw,
     opcode_rs3_in_tmp(4)<='0'; 
-    vk_rs3_in_tmp  <= vk_tmp;
-    vj_rs3_in_tmp <= vj_tmp;
-    qk_rs3_in_tmp <= qk_tmp;
-    qj_rs3_in_tmp <= qj_tmp;
-    OPCODE_RS3_IN_TMP<=opcode_tmp;
+    vk_rs3_in_tmp  <= vk;
+    vj_rs3_in_tmp <= vj;
+    qk_rs3_in_tmp <= qk;
+    qj_rs3_in_tmp <= qj;
+    OPCODE_RS3_IN_TMP<=opcode;
    -- ID_A_OUT <= id_rs3_out_tmp;
     en_rs1_tmp<="000";
     en_rs2_tmp<="000";
@@ -507,12 +507,13 @@ end if;
 -----elegxos gia th RS , ama exei keno xwro
 ----------------------------------------------------------
 --(opcode_rs1_out_tmp(4)='1')or(opcode_rs2_out_tmp(4)='1')or(opcode_rs3_out_tmp(4)='1')
+if(clk'event) then
 if ((free_out_tmp(2)/='0')or(free_out_tmp(1)/='0')or(free_out_tmp(0)/='0'))  then 
     free_a<='1';
 else 
     free_a<='0';
 end if;
-
+end if;
 
 
 
