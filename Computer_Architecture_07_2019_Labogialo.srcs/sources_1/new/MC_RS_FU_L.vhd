@@ -273,6 +273,7 @@ IF((opcode_rs1_out_tmp(4)='0')and(free_out_tmp(1)='1')) then
     en_rs1_tmp(2)<='1';
     en_rs1_tmp(1)<='0';
     en_rs1_tmp(0)<='0';
+    free_l<='1';
 else
     en_rs1_tmp(2)<='0';
 end if;
@@ -281,6 +282,7 @@ IF((opcode_rs2_out_tmp(4)='0')and(free_out_tmp(0)='1')) then
     en_rs2_tmp(2)<='1';
     en_rs2_tmp(1)<='0';
     en_rs2_tmp(0)<='0';
+    free_l<='1';
 else
     en_rs2_tmp(2)<='0';
 end if;
@@ -306,6 +308,7 @@ if(stop='1') then
         en_rs1_tmp(2)<='1';
         en_rs1_tmp(1)<='0';
         en_rs1_tmp(0)<='0';
+        free_l<='1';
     else
         en_rs1_tmp(2)<='0';
     end if;
@@ -314,6 +317,7 @@ if(stop='1') then
         en_rs2_tmp(2)<='1';
         en_rs2_tmp(1)<='0';
         en_rs2_tmp(0)<='0';
+        free_l<='1';
     else
         en_rs2_tmp(2)<='0';
     end if;
@@ -418,11 +422,13 @@ end if;
 -----elegxos gia th RS , ama exei keno xwro
 ----------------------------------------------------------
 --(opcode_rs1_out_tmp(4)='1')or(opcode_rs2_out_tmp(4)='1')
+--if(clk'event) then
 if ((free_out_tmp(1)/='0')or(free_out_tmp(0)/='0'))  then 
     free_l<='1';
 else 
     free_l<='0';
 end if;
+--end if;
 
 
 

@@ -52,7 +52,7 @@ entity MC is
            rob_dest: in STD_LOGIC_VECTOR (4 downto 0);
            rob_status: in STD_LOGIC;
            rob_value: in STD_LOGIC_VECTOR (31 downto 0);
-           
+           rob1_id :in STD_LOGIC_VECTOR (4 downto 0);
            
            rob_en :out STD_LOGIC;
            rf_dest_out: out std_logic_vector(4 downto 0); --pros rf
@@ -104,6 +104,7 @@ Component MC_RS_FU_L
            OpCode    : in STD_LOGIC_VECTOR (4 downto 0); --apo issue, me 5o bit nanai panta '0' (busy)
            Stop          : in STD_LOGIC;
            ID_ROB_RS: in  STD_LOGIC_VECTOR (4 downto 0);
+           
       
            Poke_out_L: out STD_LOGIC;
            Res_L     : out STD_LOGIC_VECTOR (31 downto 0);
@@ -155,7 +156,7 @@ Port Map(clk       =>clk,
          Free_L    =>free_L_tmp); 
 
 
-microcontroller : process(fu_type,rob_dest,id_a_out_tmp,tag_l_tmp,tag_a_tmp,clk,free_L_tmp,Free_A_tmp,result_a_tmp,result_L_tmp,opcode,id_l_out_tmp,Vk,Vj,Qk,Qj,grand_in_a,grand_in_l,stop_in)
+microcontroller : process(fu_type,rob_dest,rob_qk,rob_qj,qk_tmp,qj_tmp,id_a_out_tmp,tag_l_tmp,tag_a_tmp,clk,free_L_tmp,Free_A_tmp,result_a_tmp,result_L_tmp,opcode,id_l_out_tmp,Vk,Vj,Qk,Qj,grand_in_a,grand_in_l,stop_in,rob1_id)
 begin
 
 
@@ -200,8 +201,8 @@ end if;
 
 ---epishs mia logikh pou tha apofasizei ti value tha dwsei sthn RF, tou ROB h tou cdb(ROB OTAN rob1 einai ready opote mallon o cdb exei value gia kapio allo rob#, h cdb_v otan rob1 not ready kai cdb_q = rob_r_dest )
 --rob_dest,rob_value pernoun apodw
-if((rob_dest = cdb_q_tmp)) then  -- perpitwsh pou rob1_dest = cdb_q (dil. rob1 not ready alla molis exei bgei to apotelesma ston cdb)
-    rf_dest_out <= rob_dest; --(h cdb_q, einai to idio)
+if((rob1_id = cdb_q_tmp)) then  -- perpitwsh pou rob1_id = cdb_q (dil. rob1 not ready alla molis exei bgei to apotelesma ston cdb)
+    rf_dest_out <= rob_dest; --
     rf_val_out   <= cdb_v_tmp;
 elsif(rob_status = '1') then --ready to rob1, ara bazoume to value tou sthn rf gia egraffh
     rf_dest_out <= rob_dest;
@@ -216,10 +217,8 @@ end if;
 
 if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou arithmetic
    -- ID_out<=ID_a_OUT_TMP;
-    if(free_A_tmp='1') Then        --des an einai diathesimh h Arithmetic Unit
     
-    
-        ------------------------------------- TIS PARAKATW TIMES THA TIS PAREI EITE APO ROB EITE APO RF(SHMEIWSH MANOU)
+     ------------------------------------- TIS PARAKATW TIMES THA TIS PAREI EITE APO ROB EITE APO RF(SHMEIWSH MANOU)
         if(rob_qk ="11110") then --EKMETALEUOMASTE THN DESMEUMENH TIMH GIA NA DEI3OUME OTI TO STOIXEIO DEN UPARXEI MESA STON ROB(epilegoume), to 11111 deixnei oti uparxei ston ROB kai oriste h timh tou(den epilegoume rf)
             Vk_tmp <= Vk; --pare thn timh apo rf
             Qk_tmp <= "11111"; -- olo asous mesa sto rs. gt thn exoume thn timh
@@ -240,6 +239,12 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
             Qj_tmp <= rob_qj;
          end if;
      
+    
+    
+    if(free_A_tmp='1') Then        --des an einai diathesimh h Arithmetic Unit
+    
+    
+       
      
         ------------------------
          opcode_A_tmp <= opcode;
@@ -260,28 +265,31 @@ if((Opcode(3 downto 2) = "01")and(stop_in='0')) then --an h entolh einai tupou a
     end if; 
 elsif((Opcode(3 downto 2) = "00")AND(stop_in='0')) then --an h entolh einai tupou Logical
    -- ID_out<=ID_L_OUT_TMP;
+   if(rob_qk ="11110") then 
+      Vk_tmp <= Vk; 
+      Qk_tmp <= "11111"; 
+   elsif(rob_qk ="11111") then
+      Vk_tmp<=rob_vk;         
+      Qk_tmp <= rob_qk; 
+   else                  
+      Qk_tmp <= rob_qk;       
+   end if;                    
+                              
+   if(rob_qj ="11110") then 
+      Vj_tmp <= Vj; 
+      Qj_tmp <= "11111"; 
+   elsif(rob_qj ="11111") then
+      Vj_tmp<=rob_vj;         
+      Qj_tmp <= rob_qj; 
+   else                  
+      Qj_tmp <= rob_qj;       
+   end if; 
+   
+   
     if(free_L_tmp='1') Then        --des an einai diathesimh h Logical Unit
         
         
-        if(rob_qk ="11110") then 
-            Vk_tmp <= Vk; 
-            Qk_tmp <= "11111"; 
-         elsif(rob_qk ="11111") then
-            Vk_tmp<=rob_vk;         
-            Qk_tmp <= rob_qk; 
-         else                  
-            Qk_tmp <= rob_qk;       
-         end if;                    
-                                    
-         if(rob_qj ="11110") then 
-            Vj_tmp <= Vj; 
-            Qj_tmp <= "11111"; 
-         elsif(rob_qj ="11111") then
-            Vj_tmp<=rob_vj;         
-            Qj_tmp <= rob_qj; 
-         else                  
-            Qj_tmp <= rob_qj;       
-         end if;                    
+                           
         
         opcode_L_tmp <= opcode;
         free_l_out <= '1';

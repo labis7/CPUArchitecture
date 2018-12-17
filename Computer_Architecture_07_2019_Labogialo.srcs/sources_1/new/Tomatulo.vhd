@@ -49,7 +49,7 @@ end Tomatulo;
 architecture Behavioral of Tomatulo is
 
 SIGNAL  MC_Res_tmp, CDB_V_tmp,rk_v_tmp, rj_v_tmp ,RF_VAL_tmp,rob_vk_tmp,rob_vj_tmp,rob_value_tmp,pc_tmp  :STD_LOGIC_VECTOR (31 downto 0);
-SIGNAL  Rj_addr_tmp,rs_id_tmp,QK_OUT_tmp,Qj_OUT_tmp,opcode_tmp ,Rob_ID_tmp,rob_dest_tmp,rob_qk_tmp,rob_qj_tmp,Rf_dest_tmp : STD_LOGIC_VECTOR (4 downto 0);
+SIGNAL  Rj_addr_tmp,rs_id_tmp,QK_OUT_tmp,Qj_OUT_tmp,opcode_tmp ,Rob_ID_tmp,rob_dest_tmp,rob_qk_tmp,rob_qj_tmp,Rf_dest_tmp,rob1_id_tmp : STD_LOGIC_VECTOR (4 downto 0);
 signal   MC_tag_tmp,CDB_Q_tmp,R_dest_tmp,Rk_addr_tmp : STD_LOGIC_VECTOR (4 downto 0);
          
 SIGNAL  poke_tmp, grand_tmp  : STD_LOGIC_VECTOR (1 downto 0);
@@ -78,7 +78,7 @@ component MC is
            rob_dest: in STD_LOGIC_VECTOR (4 downto 0);
            rob_status: in STD_LOGIC;
            rob_value: in STD_LOGIC_VECTOR (31 downto 0);
-           
+           rob1_id: in STD_LOGIC_VECTOR (4 downto 0);
            
            rob_en :out STD_LOGIC;
            rf_dest_out: out std_logic_vector(4 downto 0); --pros rf
@@ -151,6 +151,7 @@ component ROB is
          
          
          --out
+         ROB1_id      : out STD_LOGIC_VECTOR (4 downto 0);
          ROB1_RES      : out STD_LOGIC_VECTOR (31 downto 0);  --pigainoun MC gia na apofasisei an diale3ei auta h ton CDB kateutheian se ena corner case(blepe MC sxolia)
          ROB1_DEST     : out STD_LOGIC_VECTOR (4 downto 0);
          ready_out     : out STD_LOGIC;
@@ -234,7 +235,7 @@ Port Map(
         rob_status=>rob_status_tmp,
         rob_value =>rob_value_tmp,
          
-         
+        rob1_id =>rob1_id_tmp, 
         rob_en      =>rob_en_tmp,
         rf_dest_out =>Rf_dest_tmp,
         rf_val_out  =>RF_VAL_tmp ,           
@@ -259,6 +260,7 @@ Port Map( CLK       =>clk,
          
       
          --out
+         ROB1_id      =>rob1_id_tmp,
          ROB1_RES      =>rob_value_tmp, --pigainoun MC gia na apofasisei an diale3ei auta h ton CDB kateutheian se ena corner case(blepe MC sxolia)
          ROB1_DEST     =>rob_dest_tmp,
          ready_out     =>rob_status_tmp,

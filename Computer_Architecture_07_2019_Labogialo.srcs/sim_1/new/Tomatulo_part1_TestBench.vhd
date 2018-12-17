@@ -133,10 +133,19 @@ begin
         Rj_addr <= "00101";        
         
         wait for 30 ns;
-        Issue_in <= '0';
+        Issue_in <= '1';
         
         
-        --wait for 140 ns;
+        --wait for 30 ns;
+        
+        
+--        Fu_type <= "01";  --  gia arithmitikh pra3h
+--         Fop <= "00";  --- gia prosthesh       
+--         R_dest <= "00110";      
+--         Rk_addr <= "00011";  -- gia na exoume e3arthsh apo to prohgoumeno
+--         Rj_addr <= "00011";
+        
+        
         
         
         
@@ -145,14 +154,16 @@ begin
         ----------------------------------------------------------------------------------extend
         
 --        ----- kateutheian apo to arxiko
---        -----bazoume , r6<=r5 or R2 =7 , R7<=R6 OR R3 =7 , R8<= NOT R6 = ?                                            
+--        -----bazoume , r6<=r5 or R2 =7 , R7<=R6 OR R3 =7 , R8<= NOT R6 = ?   
+--        Issue_in <= '1';                                         
 --        Fu_type <= "00";  --  gia logikh pra3h                                                                                    
 --        Fop <=     "00";  ---                                                                                                     
 --        R_dest  <= "00110";                                                                                                       
 --        Rk_addr <= "00101";  -- gia na exoume e3arthsh apo to prohgoumeno                                                         
 --        Rj_addr <= "00010";                                                                                                       
                                                                                                                                   
---        wait for 10 ns;                                                                                                           
+--        wait for 10 ns;   
+                                                                                                              
                                                                                                                                   
 --        Fu_type <= "00";  --    gia logikh pra3h                                                                                  
 --        Fop <=     "00";  ---                                                                                                     
@@ -161,7 +172,7 @@ begin
 --        Rj_addr <= "00011";                                                                                                       
                                                                                                                                   
 --        wait for 10 ns;                                                                                                           
-                                                                                                                                  
+--        --Issue_in <= '0';                                                                                                                            
                                                                                                                                   
 --        Fu_type <= "00";  --  gia logikh pra3h                                                                                    
 --        Fop <= "10";  --                                                                                                          
@@ -170,7 +181,7 @@ begin
 --        Rj_addr <= "00110";                                                                                                       
                                                                                                                                   
                                                                                                                                   
---         wait for 90 ns;                                                                                                          
+--         wait for 80 ns;                                                                                                          
 --         Issue_in <= '0';                                                                                                         
         
         
@@ -182,9 +193,10 @@ begin
         
     
 ------------------------------------------------------------------------------------round-robin test
---          Issue_in <= '0';      
+--       Issue_in <= '0';         
 --        wait for 90 ns;
---         --bazoume r6<=r6+r6=2, r1<=r6-r2=0 , r8<=r6-r7=1
+        
+--         --bazoume r6<=r6+r6=2, r1<=r6-r2=0 , r7<=r6-r2=0
 --        Issue_in <= '1'; 
 --        Fu_type <= "01";  --  gia arithmitikh pra3h
 --        Fop <= "00";  --- gia prosthesh       
@@ -208,9 +220,9 @@ begin
 
 --        Fu_type <= "01";  --  gia arithmitikh pra3h
 --        Fop <= "01";  --- gia afairesh       
---        R_dest <=  "01000";      
+--        R_dest <=  "00111";      
 --        Rk_addr <= "00110";  -- gia na exoume e3arthsh apo to prohgoumeno
---        Rj_addr <= "00111";
+--        Rj_addr <= "00010";
         
 --        wait for 10 ns;
 --        Issue_in <= '0';
@@ -218,7 +230,7 @@ begin
 --       Issue_in <= '1';
 --------------------
     
-----         --   bazoume , r5<=r5 or R2 =7 , R7<=R4 OR R3 = 7 , R8<= NOT R4 = ?
+----         --   bazoume , r5<=r5 or R2 =7 , R7<=R4 OR R3 = 7 
 --           Fu_type <= "00";  --  gia logikh pra3h
 --           Fop <=     "00";  ---     
 --           R_dest  <= "00101";      
@@ -240,7 +252,7 @@ begin
  
  ----------------------------------------------------------------       
 --        --bazoume r6<=r6+r6=2(arithmitiko), r1<=r6 OR r2 = 2 (logiko)                  ------e3arthseis meta3u monadwn
---        wait for 90 ns;
+--        wait for 40 ns;
 --        Issue_in <= '1'; 
 --        Fu_type <= "01";  --  gia arithmitikh pra3h
 --        Fop <= "00";  --- gia prosthesh       
@@ -280,12 +292,12 @@ begin
 --        R_dest <=  "00101";      
 --        Rk_addr <= "00001";  -- gia na exoume e3arthsh apo to prohgoumeno
 --        Rj_addr <= "00101"; 
---        wait for 20 ns;
+--        wait for 30 ns;
 
 --        Issue_in <= '0';
 -------------------------------------------------------------------------------
---        -- --bazoume , r6<=r6 and r6 = 1 , r1<= r5 or r2 = 7, r2<= r5 AND r7= 1
-       
+        -- --bazoume , r6<=r6 and r6 = 1 , r1<= r5 or r2 = 7, r2<= r5 AND r7= 1
+--       wait for 40 ns;
 --         Issue_in <= '1';
          
 --        Fu_type <= "00";  --  gia logikh pra3h
@@ -311,7 +323,7 @@ begin
 --        Rk_addr <= "00101";  -- gia na exoume e3arthsh apo to prohgoumeno
 --        Rj_addr <= "00111";
                          
---         wait for 40 ns;
+--         wait for 70 ns;
 --         Issue_in <= '0';
  --------------------------------------------------------------------------------------
 --         Issue_in <= '1';
@@ -341,7 +353,7 @@ begin
 --        Rj_addr <= "00110";
  
  
---         wait for 30 ns;         
+--         wait for 110 ns;         
 --         Issue_in <= '0';
         
         

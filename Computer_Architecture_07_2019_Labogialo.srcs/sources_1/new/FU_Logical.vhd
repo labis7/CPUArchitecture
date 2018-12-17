@@ -113,12 +113,12 @@ variable full : std_logic;
 begin
 
 
-if ( ((tag1_tmp="00100")or(tag1_tmp="00101")) and ((tag2_tmp="00100")or(tag2_tmp="00101")) AND(grand='0')) then full:='1';
+if (((tag1_tmp/="11111")and(tag2_tmp/="11111")and((tag1_tmp(0)='0')OR(tag1_tmp(0)='1'))And((tag2_tmp(0)='0')OR(tag2_tmp(0)='1'))) AND(grand='0')) then full:='1';
     else full:= '0' ;
     end if;
 
  -----------------------------spasimo arxikhs sunthikhs
- if((tag1_tmp/="11111")AND(tag1_tmp/="00100")AND(tag1_tmp/="00101")) then        en1_tmp<='1';
+ if((tag1_tmp(0)/='0')AND(tag1_tmp(0)/='1')) then        en1_tmp<='1';
  
  -----------------------------
  else 
@@ -154,7 +154,7 @@ if ( ((tag1_tmp="00100")or(tag1_tmp="00101")) and ((tag2_tmp="00100")or(tag2_tmp
          else poke_L<='0';
          end if;
  end if;
- if((tag2_tmp/="11111")AND(tag2_tmp/="00100")AND(tag2_tmp/="00101")) then        en2_tmp<='1'; end if ;
+ if((tag2_tmp(0)/='0')AND(tag2_tmp(0)/='1')) then        en2_tmp<='1'; end if ;
 
 full_out<=full;
 end process;

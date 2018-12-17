@@ -305,6 +305,7 @@ IF((opcode_rs1_out_tmp(4)='0')and(free_out_tmp(2)='1')) then
     en_rs1_tmp(2)<='1';
     en_rs1_tmp(1)<='0';
     en_rs1_tmp(0)<='0';
+    free_a<='1';
 else
     en_rs1_tmp(2)<='0';
 end if;
@@ -313,6 +314,7 @@ IF((opcode_rs2_out_tmp(4)='0')and(free_out_tmp(1)='1')) then
     en_rs2_tmp(2)<='1';
     en_rs2_tmp(1)<='0';
     en_rs2_tmp(0)<='0';
+    free_a<='1';
 else
     en_rs2_tmp(2)<='0';
 end if;
@@ -321,6 +323,7 @@ IF((opcode_rs3_out_tmp(4)='0')and(free_out_tmp(0)='1')) then
     en_rs3_tmp(2)<='1';
     en_rs3_tmp(1)<='0';
     en_rs3_tmp(0)<='0';
+    free_a<='1';
 else
     en_rs3_tmp(2)<='0';
 end if;     
@@ -346,6 +349,7 @@ if(stop='1') then
         en_rs1_tmp(2)<='1';
         en_rs1_tmp(1)<='0';
         en_rs1_tmp(0)<='0';
+        free_a<='1';
     else
         en_rs1_tmp(2)<='0';
     end if;
@@ -354,6 +358,7 @@ if(stop='1') then
         en_rs2_tmp(2)<='1';
         en_rs2_tmp(1)<='0';
         en_rs2_tmp(0)<='0';
+        free_a<='1';
     else
         en_rs2_tmp(2)<='0';
     end if;
@@ -362,6 +367,7 @@ if(stop='1') then
         en_rs3_tmp(2)<='1';
         en_rs3_tmp(1)<='0';
         en_rs3_tmp(0)<='0';
+        free_a<='1';
     else
         en_rs3_tmp(2)<='0';
     end if;     
@@ -378,6 +384,11 @@ elsif (((free_out_tmp(2)/='0') or (opcode_rs1_out_tmp(4)/='0'))and((Qk_TMP(0)='0
     en_rs1_tmp<="111";
     en_rs2_tmp<="000";
     en_rs3_tmp<="000";
+    
+  
+    
+    
+    
 
 elsif (((free_out_tmp(1)/='0')or (opcode_rs2_out_tmp(4)/='0'))and((Qk_TMP(0)='0' or Qk_TMP(0)='1'))and((Qj_TMP(0)='0' or Qj_TMP(0)='1'))) then  
     free_out_tmp(1)      :='0'; --to akurwnw edw,
@@ -392,6 +403,7 @@ elsif (((free_out_tmp(1)/='0')or (opcode_rs2_out_tmp(4)/='0'))and((Qk_TMP(0)='0'
     en_rs2_tmp<="111";
     en_rs3_tmp<="000";
 
+    
  elsif (((free_out_tmp(0)/='0')or (opcode_rs3_out_tmp(4)/='0'))and((Qk_TMP(0)='0' or Qk_TMP(0)='1'))and((Qj_TMP(0)='0' or Qj_TMP(0)='1'))) then  
     free_out_tmp(0)      :='0'; --to akurwnw edw,
     opcode_rs3_in_tmp(4)<='0'; 
@@ -404,11 +416,7 @@ elsif (((free_out_tmp(1)/='0')or (opcode_rs2_out_tmp(4)/='0'))and((Qk_TMP(0)='0'
     en_rs1_tmp<="000";
     en_rs2_tmp<="000";
     en_rs3_tmp<="111";
-    if ((opcode_rs1_out_tmp(4)='1')or(opcode_rs2_out_tmp(4)='1')or(opcode_rs3_out_tmp(4)='1')or(free_out_tmp(2)/='0')or(free_out_tmp(1)/='0')or(free_out_tmp(0)/='0'))  then 
-        free_a<='1';
-    else 
-        free_a<='0';
-    end if;
+
 else 
     en_rs1_tmp(1 downto 0)<="00";
     en_rs2_tmp(1 downto 0)<="00";
@@ -507,13 +515,13 @@ end if;
 -----elegxos gia th RS , ama exei keno xwro
 ----------------------------------------------------------
 --(opcode_rs1_out_tmp(4)='1')or(opcode_rs2_out_tmp(4)='1')or(opcode_rs3_out_tmp(4)='1')
-if(clk'event) then
+--if(clk'event) then
 if ((free_out_tmp(2)/='0')or(free_out_tmp(1)/='0')or(free_out_tmp(0)/='0'))  then 
     free_a<='1';
 else 
     free_a<='0';
 end if;
-end if;
+--end if;
 
 
 

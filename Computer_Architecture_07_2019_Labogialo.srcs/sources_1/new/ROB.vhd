@@ -47,6 +47,7 @@ entity ROB is
          
          
          --out
+         ROB1_ID      : out STD_LOGIC_VECTOR (4 downto 0);                                                     --pigainoun MC gia na apofasisei an diale3ei auta h ton CDB kateutheian se ena corner case(blepe MC sxolia)
          ROB1_RES      : out STD_LOGIC_VECTOR (31 downto 0);  --pigainoun MC gia na apofasisei an diale3ei auta h ton CDB kateutheian se ena corner case(blepe MC sxolia)
          ROB1_DEST     : out STD_LOGIC_VECTOR (4 downto 0);
          ready_out     : out STD_LOGIC;
@@ -214,16 +215,18 @@ end if;
 ---------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------delete ROB1 (commited)  and bot++(bot erase)-----------------------------------
 --------------------------------------------------------------------------------------------------------------- 
-
+if clk'event and clk = '1' then
 if((Ready(to_integer(unsigned(bot)))='1')or(CDB_Q = bot)) then          --elegxos gia to corner case tou i==bot(kai ready=1) kai tou cdb na exei ferei twra thn timh tou
     bot := bot_s + "00001";
     bot := std_logic_vector(to_unsigned( ((to_integer(unsigned(bot))) mod 30) , 5 ));  
 else
     null;  
 end if;
+end if;
 
 --enhmerwsh twn out timws tou bot opws dest,ready_status k.a.
 if clk'event and clk = '1' then
+    rob1_id        <= bot;
     ROB1_RES       <= Value(to_integer(unsigned(bot)));
     ROB1_DEST      <= Dest(to_integer(unsigned(bot)));
     ready_out      <= ready(to_integer(unsigned(bot)));
