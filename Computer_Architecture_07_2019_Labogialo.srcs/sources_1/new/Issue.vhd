@@ -82,7 +82,17 @@ if(Rising_edge(clk)) then
            Rj_addr <=  Rj_addr_IN;
            stop<='0';
            Accepted <= '1';
-     else
+    elsif((Issue_in='1')and(fu_type/="01")and(fu_type/="00")and((fu_type(0)='0')or(fu_type(0)='1'))) then
+        opcode  <=  '0' & Fu_type & FOp;
+        R_dest  <=  R_dest_IN;
+        Rk_addr <=  Rk_addr_IN;
+        Rj_addr <=  Rj_addr_IN;
+        stop<='1';
+        Accepted <= '1';
+    
+     else 
+           
+            
            R_dest  <= "00000"; --gia na mhn energopoihthei (enswmatwmeno)enable sto RF
            --if(Issue_in='0') then     
                 stop<='1';

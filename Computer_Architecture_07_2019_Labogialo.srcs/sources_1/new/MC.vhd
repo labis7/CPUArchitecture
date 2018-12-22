@@ -181,7 +181,7 @@ end if;
 --------
 --spasimo arxikh periptwshs(+exception)
 --------
-if((Opcode(3 downto 2) /= "01" )and (Opcode(3 downto 2) /= "00" )) then 
+if((opcode(0)/='0')and(opcode(0)/='1')) then 
     free_a_out<='1';
     free_l_out<='1';
 end if;
@@ -212,6 +212,11 @@ elsif(rob_status /= '1') then --bathu
 else null;
 end if;
     
+
+
+    
+
+
 
 
 
@@ -305,7 +310,11 @@ elsif((Opcode(3 downto 2) = "00")AND(stop_in='0')) then --an h entolh einai tupo
        -- rob_en<='0'; ----------DISABLE TOU ROB   (prosoxh na dw ton sugxronismo!!!)   
     end if;
 else 
-    rob_en<='0';
+    if((((Opcode(3 downto 2)/="01")and(Opcode(3 downto 2)/="00"))OR((Opcode(1 downto 0)/="00")AND(Opcode(1 downto 0)/="01")AND(Opcode(1 downto 0)/="10")))AND((Opcode(0) = '0')OR(Opcode(0) = '1'))) then
+       rob_en<='1'; 
+    else
+        rob_en<='0';
+    end if;
 end if;
 
 

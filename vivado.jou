@@ -2,20 +2,12 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Sun Dec 16 12:52:31 2018
-# Process ID: 2940
-# Current directory: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent3048 L:\VidadoLabs\Computer_Architecture_07_2019_Labogialo\Computer_Architecture_07_2019_Labogialo.xpr
-# Log file: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/vivado.log
-# Journal file: L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo\vivado.jou
+# Start of session at: Sat Dec 22 16:04:14 2018
+# Process ID: 5388
+# Current directory: C:/Users/Labis/Desktop/part4
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13676 C:\Users\Labis\Desktop\part4\Computer_Architecture_07_2019_Labogialo.xpr
+# Log file: C:/Users/Labis/Desktop/part4/vivado.log
+# Journal file: C:/Users/Labis/Desktop/part4\vivado.jou
 #-----------------------------------------------------------
 start_gui
-open_project L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.xpr
-launch_simulation
-open_wave_config L:/VidadoLabs/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg
-source tb_Tomatulo.tcl
-relaunch_sim
-relaunch_sim
-relaunch_sim
-relaunch_sim
-relaunch_sim
+open_project C:/Users/Labis/Desktop/part4/Computer_Architecture_07_2019_Labogialo.xpr

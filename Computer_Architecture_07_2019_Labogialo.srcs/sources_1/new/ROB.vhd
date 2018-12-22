@@ -73,10 +73,12 @@ signal Value,pc       : bit_32;
 signal Dest           : bit_5;
 signal opcode         : bit_4; 
 signal ready,ex_stat  : bit_1;
-signal top_s,bot_s  : std_logic_vector (4 downto 0);
+signal top_s,bot_s : std_logic_vector (4 downto 0);
+signal pc_s : std_logic_vector(31 downto 0);
 
 begin
 process (clk,top_s,bot_s,ready,r_dest,rk,rj,en,opcode_in,cdb_Q)
+--variable pc_t : std_logic_vector (31 downto 0);
 variable top : std_logic_vector (4 downto 0);             -- tha arxikopoihsoyme sto ROB1 (00000)   = bot
 variable bot : std_logic_vector (4 downto 0);           -- tha arxikopoihsoyme sto ROB1 (00000)   = top
                                                           -- einai o deiktis poy mas deixnei se poio stoixeio ths fifo tha grapsoume   
@@ -87,6 +89,7 @@ begin
 --TOP_S<="00000";
 ---------spasimo arxikhs
 if((top_s(0) /='1') AND (top_s(0) /='0') ) THEN 
+    pc_s<= "00000000000000000000000000000000";
     BOT := "00001";
     top := "00000";
     --ready(1) <= '0'; --3ekiname gia init apo 00000
@@ -159,10 +162,12 @@ end if;
        if((en='1')AND(CLK='1')) then   
             top := top_s + "00001";                                                           
             top := std_logic_vector(to_unsigned( ((to_integer(unsigned(top))) mod 30) , 5 )); 
+            pc(to_integer(unsigned(top))) <= pc_s;
+            pc_s<= pc_s + "00000000000000000000000000000100";
             Dest(to_integer(unsigned(top))) <= R_dest;
             ready(to_integer(unsigned(top))) <= '0';            -- ready = done , den uparxei periptwsi moliw mpei mia entoli apo issue na exoume apotelesmata sto value
             opcode(to_integer(unsigned(top))) <= Opcode_in;
-            pc(to_integer(unsigned(top))) <=pc_in;
+            
             if ((opcode_in(3 downto 2) = "00") or (opcode_in(3 downto 2) = "01")) AND ((opcode_in(1 downto 0) = "00") or (opcode_in(1 downto 0) = "01")  or (opcode_in(1 downto 0) = "10")) then
                ex_stat(to_integer(unsigned(top))) <='0';
             else
@@ -216,12 +221,14 @@ end if;
 ----------------------------------------delete ROB1 (commited)  and bot++(bot erase)-----------------------------------
 --------------------------------------------------------------------------------------------------------------- 
 if clk'event and clk = '1' then
-if((Ready(to_integer(unsigned(bot)))='1')or(CDB_Q = bot)) then          --elegxos gia to corner case tou i==bot(kai ready=1) kai tou cdb na exei ferei twra thn timh tou
-    bot := bot_s + "00001";
-    bot := std_logic_vector(to_unsigned( ((to_integer(unsigned(bot))) mod 30) , 5 ));  
-else
-    null;  
-end if;
+     if((((Opcode(to_integer(unsigned(bot)))(3 downto 2)/="01")and(Opcode(to_integer(unsigned(bot)))(3 downto 2)/="00"))OR((Opcode(to_integer(unsigned(bot)))(1 downto 0)/="00")AND(Opcode(to_integer(unsigned(bot)))(1 downto 0)/="01")AND(Opcode(to_integer(unsigned(bot)))(1 downto 0)/="10")))AND(opcode(to_integer(unsigned(bot)))(0)='0' or opcode(to_integer(unsigned(bot)))(0)='1')) then
+        bot := std_logic_vector(to_unsigned( ((to_integer(unsigned(top + "00001"))) mod 30) , 5 )) ;  
+    elsif((Ready(to_integer(unsigned(bot)))='1')or(CDB_Q = bot)) then          --elegxos gia to corner case tou i==bot(kai ready=1) kai tou cdb na exei ferei twra thn timh tou
+        bot := bot_s + "00001";  
+        bot := std_logic_vector(to_unsigned( ((to_integer(unsigned(bot))) mod 30) , 5 ));        
+    else
+        null;  
+    end if;
 end if;
 
 --enhmerwsh twn out timws tou bot opws dest,ready_status k.a.

@@ -133,10 +133,10 @@ begin
         Rj_addr <= "00101";        
         
         wait for 30 ns;
-        Issue_in <= '1';
+        Issue_in <= '0';
         
         
-        --wait for 30 ns;
+        wait for 30 ns;
         
         
 --        Fu_type <= "01";  --  gia arithmitikh pra3h
@@ -296,7 +296,7 @@ begin
 
 --        Issue_in <= '0';
 -------------------------------------------------------------------------------
-        -- --bazoume , r6<=r6 and r6 = 1 , r1<= r5 or r2 = 7, r2<= r5 AND r7= 1
+--         --bazoume , r6<=r6 and r6 = 1 , r1<= r5 or r2 = 7, r2<= r5 AND r7= 1
 --       wait for 40 ns;
 --         Issue_in <= '1';
          

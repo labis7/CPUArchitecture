@@ -1,0 +1,53 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Thu Dec 20 20:09:06 2018
+# Process ID: 916
+# Current directory: C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9516 C:\Users\Labis\Desktop\Computer_Architecture_07_2019_Labogialo\Computer_Architecture_07_2019_Labogialo.xpr
+# Log file: C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/vivado.log
+# Journal file: C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.xpr
+launch_simulation
+open_wave_config C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg
+source tb_Tomatulo.tcl
+relaunch_sim
+relaunch_sim
+add_bp {C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/ROB.vhd} 223
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+remove_bps -file {C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/Computer_Architecture_07_2019_Labogialo.srcs/sources_1/new/ROB.vhd} -line 223
+relaunch_sim
+relaunch_sim
+relaunch_sim
+save_wave_config {C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg}
+relaunch_sim
+relaunch_sim
+save_wave_config {C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg}
+relaunch_sim
+close_sim
+launch_simulation
+open_wave_config C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg
+source tb_Tomatulo.tcl
+restart
+run 10 us
+save_wave_config {C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg}
+close_sim
+launch_simulation
+open_wave_config C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg
+source tb_Tomatulo.tcl
+relaunch_sim
+close_sim
+launch_simulation
+open_wave_config C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg
+source tb_Tomatulo.tcl
+close_sim
+launch_simulation
+open_wave_config C:/Users/Labis/Desktop/Computer_Architecture_07_2019_Labogialo/tb_Tomatulo_behav_1_Instruction_Bench.wcfg
+source tb_Tomatulo.tcl
+close_sim
